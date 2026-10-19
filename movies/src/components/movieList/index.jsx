@@ -9,12 +9,7 @@ const MovieList = (props) => {
 
     </Grid>
   ));
-
-    const handleAddToFavorite = (e) => {
-    e.preventDefault();
-    props.selectFavorite(movie.id);
-  };
-
+  
   return movieCards;
 };
 
