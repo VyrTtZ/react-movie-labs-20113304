@@ -5,7 +5,7 @@ import { getUpcomingMovies } from "../api/tmdb-api";
 
 const UpcomingMoviesPage = (props) => {
   const toDo = () => true;
-  const movies = useState([]);
+  const [movies, setMovies] = useState([]);
 
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const UpcomingMoviesPage = (props) => {
 
   return (
     <PageTemplate
-      title="Hated Movies"
+      title="Upcoming Movies"
       movies={movies}
       selectFavorite={toDo}
     />

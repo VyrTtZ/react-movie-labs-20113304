@@ -1,10 +1,12 @@
 import { createRoot } from "react-dom/client";
 import MoviePage from "./pages/movieDetailsPage";
 import FavoriteMoviesPage from "./pages/favoriteMoviesPage";
+import { BrowserRouter, Route, Navigate, Routes } from "react-router";
 import MovieReviewPage from "./pages/movieReviewPage";
 import SiteHeader from './components/siteHeader'
 import HatedMoviesPage from "./pages/hatedMoviesPage";
 import UpcomingMoviesPage from "./pages/upcomingMoviesPage";
+import HomePage from "./pages/homePage";
 
 const App = () => {
   return (

@@ -21,7 +21,7 @@ import Avatar from '@mui/material/Avatar';
 export default function MovieCard(props) {
   const movie = props.movie;
 
-    const handleAddToFavorite = (e) => {
+  const handleAddToFavorite = (e) => {
     e.preventDefault();
     props.selectFavorite(movie.id);
   };
@@ -29,7 +29,7 @@ export default function MovieCard(props) {
   const handleAddToHated = (e) => {
     e.preventDefault();
     props.selectHated(movie.id);
-  }
+  };
 
 
 
@@ -71,10 +71,6 @@ export default function MovieCard(props) {
               <StarRateIcon fontSize="small" />
               {"  "} {movie.vote_average}{" "}
             </Typography>
-            <Typography variant="h6" component="p">
-              <DeleteIcon fontSize="small" />
-              {"  "} {movie.vote_average}{" "}
-            </Typography>
           </Grid>
         </Grid>
       </CardContent>
@@ -83,7 +79,7 @@ export default function MovieCard(props) {
               <FavoriteIcon color="primary" fontSize="large" />
             </IconButton>
             <IconButton aria-label="add to hated" onClick={handleAddToHated}>
-              <HatedIcon color="primary" fontSize="large" />
+              <DeleteIcon color="primary" fontSize="large" />
             </IconButton>
 
                 <Link to={`/movies/${movie.id}`}>
