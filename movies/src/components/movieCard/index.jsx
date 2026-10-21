@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
+import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png'
@@ -24,6 +25,13 @@ export default function MovieCard(props) {
     e.preventDefault();
     props.selectFavorite(movie.id);
   };
+
+  const handleAddToHated = (e) => {
+    e.preventDefault();
+    props.selectHated(movie.id);
+  }
+
+
 
   return (
     <Card>
@@ -63,13 +71,20 @@ export default function MovieCard(props) {
               <StarRateIcon fontSize="small" />
               {"  "} {movie.vote_average}{" "}
             </Typography>
+            <Typography variant="h6" component="p">
+              <DeleteIcon fontSize="small" />
+              {"  "} {movie.vote_average}{" "}
+            </Typography>
           </Grid>
         </Grid>
       </CardContent>
       <CardActions disableSpacing>
             <IconButton aria-label="add to favorites" onClick={handleAddToFavorite}>
-        <FavoriteIcon color="primary" fontSize="large" />
-    </IconButton>
+              <FavoriteIcon color="primary" fontSize="large" />
+            </IconButton>
+            <IconButton aria-label="add to hated" onClick={handleAddToHated}>
+              <HatedIcon color="primary" fontSize="large" />
+            </IconButton>
 
                 <Link to={`/movies/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">

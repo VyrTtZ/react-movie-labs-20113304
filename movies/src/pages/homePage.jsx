@@ -5,6 +5,7 @@ import { getMovies } from "../api/tmdb-api";
 const HomePage = (props) => {
   const [movies, setMovies] = useState([]);
   const favorites = movies.filter(m => m.favorite)
+  const hated = movies.filter(m => m.favorite)
   localStorage.setItem('favorites', JSON.stringify(favorites))
 
   const addToFavorites = (movieId) => {
@@ -13,6 +14,13 @@ const HomePage = (props) => {
     );
     setMovies(updatedMovies);
   };
+
+  const addToHated = (movieId) => {
+    const updatedMovies = movies.map((m) =>
+      m.id === movieId ? { ...m, favorite: true } : m
+    );
+    setMovies(updatedMovies);
+  }
 
   useEffect(() => {
     getMovies().then(movies => {
@@ -25,6 +33,7 @@ const HomePage = (props) => {
       title='Discover Movies'
       movies={movies}
       selectFavorite={addToFavorites}
+      selectHated={addToHated}
     />
   );
 };
