@@ -4,7 +4,6 @@ import { useQuery } from '@tanstack/react-query';
 import Spinner from '../components/spinner';
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 
-
 const HomePage = (props) => {
 
   const { data, error, isPending, isError  } = useQuery({
@@ -27,7 +26,7 @@ const HomePage = (props) => {
   localStorage.setItem('favorites', JSON.stringify(favorites))
   const addToFavorites = (movieId) => true 
 
-     return (
+   return (
       <PageTemplate
         title="Discover Movies"
         movies={movies}
@@ -36,6 +35,6 @@ const HomePage = (props) => {
         }}
       />
   );
-
 };
 export default HomePage;
+

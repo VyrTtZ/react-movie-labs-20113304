@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
@@ -36,8 +35,6 @@ const ratings = [
   },
 ];
 
-  const [open, setOpen] = useState(false); 
-  const navigate = useNavigate();
 
 
 const styles = {
@@ -95,6 +92,9 @@ const ReviewForm = ({ movie }) => {
   const handleRatingChange = (event) => {
     setRating(event.target.value);
   };
+
+  const [open, setOpen] = useState(false); 
+  const navigate = useNavigate();
   const onSubmit = (review) => {
     review.movieId = movie.id;
     review.rating = rating;
