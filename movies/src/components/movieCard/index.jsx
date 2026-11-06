@@ -22,10 +22,10 @@ import { MoviesContext } from "../../contexts/moviesContext";
 
 
 
-export default function MovieCard({ movie, action }) {
+export default function MovieCard({ movie }) { 
 
 
-    const { favorites, addToFavorites } = useContext(MoviesContext);
+  const { favorites, addToFavorites } = useContext(MoviesContext);
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
@@ -43,7 +43,7 @@ export default function MovieCard({ movie, action }) {
 
   return (
     <Card>
-            <CardHeader
+                  <CardHeader
         avatar={
           movie.favorite ? (
             <Avatar sx={{ backgroundColor: 'red' }}>
@@ -57,6 +57,7 @@ export default function MovieCard({ movie, action }) {
           </Typography>
         }
       />
+
 
       <CardMedia
         sx={{ height: 500 }}
@@ -84,7 +85,10 @@ export default function MovieCard({ movie, action }) {
       </CardContent>
       <CardActions disableSpacing>
       
-        {action(movie)}
+            <IconButton aria-label="add to favorites" onClick={handleAddToFavorite}>
+        <FavoriteIcon color="primary" fontSize="large" />
+    </IconButton>
+
       
         <Link to={`/movies/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">

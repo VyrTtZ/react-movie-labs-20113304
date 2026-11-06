@@ -4,13 +4,11 @@ import FavoriteMoviesPage from "./pages/favoriteMoviesPage";
 import { BrowserRouter, Route, Navigate, Routes } from "react-router";
 import MovieReviewPage from "./pages/movieReviewPage";
 import SiteHeader from './components/siteHeader'
-import HatedMoviesPage from "./pages/hatedMoviesPage";
-import UpcomingMoviesPage from "./pages/upcomingMoviesPage";
 import HomePage from "./pages/homePage";
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import UpcomingPage from "./pages/upcomingMoviesPage";
 import MoviesContextProvider from "./contexts/moviesContext";
-import AddMovieReviewPage from './pages/addMovieReviewPage'
 
 
 
@@ -33,7 +31,7 @@ const App = () => {
         <MoviesContextProvider>
           <Routes>
             <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
-            <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
+            <Route path="/movies/upcoming" element={<UpcomingPage />} />
             <Route path="/reviews/:id" element={<MovieReviewPage />} />
             <Route path="/movies/:id" element={<MoviePage />} />
             <Route path="/" element={<HomePage />} />
@@ -45,6 +43,7 @@ const App = () => {
     </QueryClientProvider>
   );
 };
+
 
 
 
