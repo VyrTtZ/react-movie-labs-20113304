@@ -1,49 +1,54 @@
 
-
-import { getMoviesList } from "../api/tmdb-api";
-import PageTemplate from '../components/templateMovieListPage';
-import { useQuery } from '@tanstack/react-query';
+import { useContext } from "react";
+import PageTemplate from "../components/templateMovieListPage";
+import { MoviesContext } from "../contexts/moviesContext";
+import { useQueries } from "@tanstack/react-query";
+import { getMovie } from "../api/tmdb-api";
 import Spinner from '../components/spinner';
-import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
-import { useState } from "react";
+import RemoveFromFavorites from "../components/cardIcons/removeFromFavorites";
+import WriteReview from "../components/cardIcons/writeReview";
 
-//placeholder for now
-const Hated = () => {
-const [page, setPage] = useState(1);
 
-  const { data, error, isPending, isError  } = useQuery({
-	queryKey: ['now playing list', { type: "now_playing", page}],
-    queryFn: getMoviesList,
-  })
+const HatedMoviesPage = () => {
+  const {hated: movieIds } = useContext(MoviesContext);
+
+  // Create an array of queries and run in parallel.
+  const hatedMovieQueries = useQueries({
+    queries: movieIds.map((movieId) => {
+      return {
+        queryKey: ['movie', { id: movieId }],
+        queryFn: getMovie,
+      }
+    })
+  });
   
+  // Check if any of the parallel queries is still loading.
+  const isPending = hatedMovieQueries.find((m) => m.isPending === true);
+
   if (isPending) {
-    return <Spinner />
+    return <Spinner />;
   }
 
-  if (isError) {
-    return <h1>{error.message}</h1>
-  }  
-  
-  const movies = data.results;
+  const movies = hatedMovieQueries.map((q) => {
+    q.data.genre_ids = q.data.genres.map(g => g.id)
+    return q.data
+  });
 
-  // Redundant, but necessary to avoid app crashing.
-  const favorites = movies.filter(m => m.favorite)
-  localStorage.setItem('favorites', JSON.stringify(favorites))
-  const addToFavorites = (movieId) => true 
+  const toDo = () => true;
 
-     return (
-      <PageTemplate
-        title="Discover Movies"
-        movies={movies}
-        action={(movie) => {
-          return <AddToFavoritesIcon movie={movie} />
-        }}
-        page={page}
-
-      totalPages={Math.min(data.total_pages, 500)}
-      onPageChange={setPage}
-      />
-  );
-
+    return (
+    <PageTemplate
+      title="Hated Movies"
+      movies={movies}
+      action={(movie) => {
+        return (
+          <>
+            <RemoveFromFavorites movie={movie} />
+            <WriteReview movie={movie} />
+          </>
+        );
+      }}
+    />
+    );
 };
-export default NowPlaying;
+export default HatedMoviesPage;

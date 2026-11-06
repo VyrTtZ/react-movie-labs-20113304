@@ -7,6 +7,7 @@ import CardHeader from "@mui/material/CardHeader";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import MoodBadIcon from "@mui/icons-material/MoodBad";
 import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -25,7 +26,7 @@ import { MoviesContext } from "../../contexts/moviesContext";
 export default function MovieCard({ movie }) { 
 
 
-  const { favorites, addToFavorites } = useContext(MoviesContext);
+  const { favorites, addToFavorites, hated, addToHated } = useContext(MoviesContext);
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
@@ -37,7 +38,10 @@ export default function MovieCard({ movie }) {
     e.preventDefault();
     addToFavorites(movie);
   };
-
+const handleAddToHated = (e) => {
+	e.preventDefault();
+	addToHated(movie);
+};
 
 
 
@@ -89,6 +93,9 @@ export default function MovieCard({ movie }) {
         <FavoriteIcon color="primary" fontSize="large" />
     </IconButton>
 
+            <IconButton aria-label="add to hated" onClick={handleAddToHated}>
+        <MoodBadIcon color="primary" fontSize="large" />
+    </IconButton>
       
         <Link to={`/movies/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
