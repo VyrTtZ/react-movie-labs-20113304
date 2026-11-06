@@ -1,10 +1,11 @@
 import { useState } from "react";
 import Header from "../headerMovieList";
+import Footer from "../footer";
 import FilterCard from "../filterMoviesCard";
 import MovieList from "../movieList";
 import Grid from "@mui/material/Grid";
 
-function MovieListPageTemplate({ movies, title, action }) {
+function MovieListPageTemplate({ movies, title, action, page, totalPages, onPageChange }) {
 
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
@@ -40,9 +41,14 @@ function MovieListPageTemplate({ movies, title, action }) {
             genreFilter={genreFilter}
           />
         </Grid>
-                <MovieList action={action} movies={displayedMovies}></MovieList>
+            <MovieList action={action} movies={displayedMovies}></MovieList>
 
       </Grid>
+      <Footer
+  page={page}
+  totalPages={totalPages}
+  onChange={onPageChange}
+/>
     </Grid>
   );
 }
