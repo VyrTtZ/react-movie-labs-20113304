@@ -9,9 +9,10 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import UpcomingPage from "./pages/upcomingMoviesPage";
 import MoviesContextProvider from "./contexts/moviesContext";
-
-
-
+import MovieGraphPage from "./components/movieGraph";
+import NowPlaying from "./pages/nowPlaying";
+import TopRated from "./pages/topRated";
+import Hated from "./pages/hated";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -36,7 +37,11 @@ const App = () => {
             <Route path="/movies/:id" element={<MoviePage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="*" element={<Navigate to="/" />} />
-          </Routes>
+	    <Route path="/movies/:id/graph" element={<MovieGraphPage />} />
+	    <Route path="/movies/now_playing" element={<NowPlaying />}/>
+	    <Route path="/movies/top_rated" element={<TopRated />}/>
+	    <Route path="/movies/hated" element={<Hated />}/>
+	  </Routes>
         </MoviesContextProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />

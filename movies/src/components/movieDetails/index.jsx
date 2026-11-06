@@ -70,8 +70,19 @@ const [drawerOpen, setDrawerOpen] = useState(false);
           <li key={g.name}>
             <Chip label={g.name} sx={{...chip}} />
           </li>
-        ))}
-      </Paper>
+	))}
+	<li>
+		<Chip
+		sx={{...chip}}
+		icon={<HubIcon />}
+		lable="Similar movies graph"
+		component={Link}
+		to={"/movies/${movie.id}/graph"}
+		clickable
+		color="primary"
+		/>
+	</li>
+	  </Paper>
       </Paper>
             <Fab
         color="secondary"
