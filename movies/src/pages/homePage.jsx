@@ -3,14 +3,15 @@ import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../components/spinner';
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
-import { useState } from "react";
-
+import { useState, useContext } from "react";
+import { MoviesContext } from "../contexts/moviesContext";
 
 const HomePage = () => {
 const [page, setPage] = useState(1);
+	const { media } = useContext(MoviesContext);
 
   const { data, error, isPending, isError  } = useQuery({
-    queryKey: ['discover', { page }],
+    queryKey: ['discover', {media, page }],
     queryFn: getMovies,
   })
   

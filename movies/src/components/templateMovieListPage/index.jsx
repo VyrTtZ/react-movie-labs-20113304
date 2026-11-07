@@ -5,6 +5,7 @@ import FilterCard from "../filterMoviesCard";
 import MovieList from "../movieList";
 import Grid from "@mui/material/Grid";
 
+
 function MovieListPageTemplate({ movies, title, action, page, totalPages, onPageChange }) {
 
   const [nameFilter, setNameFilter] = useState("");

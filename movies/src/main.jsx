@@ -13,6 +13,8 @@ import MovieGraphPage from "./components/movieGraph";
 import NowPlaying from "./pages/nowPlaying";
 import TopRated from "./pages/topRated";
 import Hated from "./pages/hated";
+
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -28,9 +30,10 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <SiteHeader />
         <MoviesContextProvider>
-          <Routes>
+          
+        <SiteHeader />
+	  <Routes>
             <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
             <Route path="/movies/upcoming" element={<UpcomingPage />} />
             <Route path="/reviews/:id" element={<MovieReviewPage />} />

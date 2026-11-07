@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -11,13 +11,16 @@ import { useNavigate } from "react-router";
 import { styled } from '@mui/material/styles';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import Switch from "@mui/material/Switch";
+import { MoviesContext } from "../../contexts/moviesContext";
+
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-
+  const { media, setMedia} = useContext(MoviesContext);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   
@@ -100,6 +103,11 @@ const SiteHeader = () => {
                 ))}
               </>
             )}
+	  <Switch 
+	  checked={media === "tv"}
+	  onChange={(e) => setMedia(e.target.checked ? "tv" : "movie")}
+	  color="default"
+	  />
         </Toolbar>
       </AppBar>
       <Offset />
