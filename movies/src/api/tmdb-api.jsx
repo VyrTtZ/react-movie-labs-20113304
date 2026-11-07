@@ -54,8 +54,9 @@ export const getMovie = (args) => {
 
 
 
-export const getGenres = (media = "movie") => {
-  return fetch(
+export const getGenres = ({queryKey}) => {
+  const [, {media}] = queryKey;
+	return fetch(
     `https://api.themoviedb.org/3/genre/${media}/list?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US`
   ).then((response) => {
     if (!response.ok) {
@@ -97,17 +98,20 @@ export const getMovieReviews = (id) => {
     });
 };
 
-export const getUpcomingMovies = (id) => {
+export const getUpcomingMovies = ({ queryKey }) => {
+  const [, { media, page }] = queryKey;
+  const path = media === "tv" ? "tv/on_the_air" : "movie/upcoming";
   return fetch(
-    `https://api.themoviedb.org/3/${media}/upcoming?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
-  )
-    .then((res) => res.json())
-    .then((json) => {
-      // console.log(json.results);
-      return json.results;
-    });
+    `https://api.themoviedb.org/3/${path}?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=${page}`
+  ).then((response) => {
+    if (!response.ok) {
+      return response.json().then((error) => {
+        throw new Error(error.status_message || "Something went wrong");
+      });
+    }
+    return response.json();
+  });
 };
-
 
 export const getRecommendations = ({ queryKey }) => {
 	const [, idPart] = queryKey;

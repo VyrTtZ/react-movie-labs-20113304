@@ -1,4 +1,4 @@
-import React, {useState, useEffect}  from "react";
+import React, {useContext, useState, useEffect}  from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -13,7 +13,7 @@ import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
 import { getGenres } from "../../api/tmdb-api";
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../spinner';
-
+import { MoviesContext } from "../../contexts/moviesContext";
 
 const formControl = 
   {
@@ -23,9 +23,9 @@ const formControl =
   };
 
 export default function FilterMoviesCard(props) {
-
+  const { media } = useContext(MoviesContext);
   const { data, error, isPending, isError } = useQuery({
-    queryKey: ['genres'],
+    queryKey: ['genres', { media }],
     queryFn: getGenres,
   });
 
@@ -36,6 +36,7 @@ export default function FilterMoviesCard(props) {
   if (isError) {
     return <h1>{error.message}</h1>;
   }
+
   const genres = data.genres;
   if (genres[0].name !== "All"){
     genres.unshift({ id: "0", name: "All" });
