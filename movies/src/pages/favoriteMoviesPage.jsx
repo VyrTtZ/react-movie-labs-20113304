@@ -10,12 +10,12 @@ import WriteReview from "../components/cardIcons/writeReview";
 
 const FavoriteMoviesPage = () => {
   const {favorites: movieIds } = useContext(MoviesContext);
-
+  const {media} = useContext(MoviesContext)
   // Create an array of queries and run in parallel.
   const favoriteMovieQueries = useQueries({
     queries: movieIds.map((movieId) => {
       return {
-        queryKey: ['movie', { id: movieId }],
+        queryKey: ['movie', { id: movieId, media }],
         queryFn: getMovie,
       }
     })

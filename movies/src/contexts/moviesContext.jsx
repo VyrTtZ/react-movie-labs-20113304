@@ -3,70 +3,45 @@ import React, { useState } from "react";
 export const MoviesContext = React.createContext(null);
 
 const MoviesContextProvider = (props) => {
-  const [favorites, setFavorites] = useState( [] )
-    const [myReviews, setMyReviews] = useState( {} ) 
-const [hated, setHated] = useState( [] ) 
-const [media, setMedia] = useState("movie");
+  const [media, setMedia] = useState("movie");
+  const [myReviews, setMyReviews] = useState({});
+  const [favLists, setFavLists] = useState({ movie: [], tv: [] });
+  const [hatedLists, setHatedLists] = useState({ movie: [], tv: [] });
 
-  const addToFavorites = (movie) => {
-    let newFavorites = [];
-    if (!favorites.includes(movie.id)){
-      newFavorites = [...favorites, movie.id];
-    }
-    else{
-      newFavorites = [...favorites];
-    }
-    setFavorites(newFavorites)
-  };
-  
-  // We will use this function in the next step
-  const removeFromFavorites = (movie) => {
-    setFavorites( favorites.filter(
-      (mId) => mId !== movie.id
-    ) )
-  };
+  const favorites = favLists[media];
+  const hated = hatedLists[media];
 
-  const addToHated = (movie) => {
-	  let newHated = [];
-	  if(!hated.includes(movie.id)){
-		  newHated = [...hated, movie.id];
-	  }
-	  else{
-		  newHated = [...hated];
-	  }
-	  setHated(newHated)
+  const addToList = (setLists) => (movie) =>
+    setLists((prev) =>
+      prev[media].includes(movie.id) ? prev : { ...prev, [media]: [...prev[media], movie.id] }
+    );
+
+  const removeFromList = (setLists) => (movie) =>
+    setLists((prev) => ({
+      ...prev, [media]: prev[media].filter((id) => id !== movie.id),
+    }));
+
+  const addToFavorites = addToList(setFavLists);
+  const removeFromFavorites = removeFromList(setFavLists);
+  const addToHated = addToList(setHatedLists);
+  const removeFromHated = removeFromList(setHatedLists);
+
+  const addReview = (movie, review) => {
+    setMyReviews({ ...myReviews, [`${media}-${movie.id}`]: review });
   };
 
-const removeFromHated = (movie) => {
-	setHated( hated.filter(
-		(mId) => mId !== movie.id
-	))
-};
-
-    const addReview = (movie, review) => {
-    setMyReviews( {...myReviews, [movie.id]: review } )
-  };
-  //console.log(myReviews);
-
-
-   return (
+  return (
     <MoviesContext.Provider
       value={{
-        favorites,
-        addToFavorites,
-        removeFromFavorites,
-        hated,
-	addToHated,
-   	removeFromHated,
-        addReview,
-	media,
-	setMedia
+        favorites, addToFavorites, removeFromFavorites,
+        hated, addToHated, removeFromHated,
+        addReview, myReviews,
+        media, setMedia,
       }}
     >
       {props.children}
     </MoviesContext.Provider>
   );
-
 };
 
 export default MoviesContextProvider;

@@ -3,13 +3,14 @@ import Paper from "@mui/material/Paper";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import MonetizationIcon from "@mui/icons-material/MonetizationOn";
 import StarRate from "@mui/icons-material/StarRate";
+import HubIcon from "@mui/icons-material/Hub";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews"
-import { MoviesContext} from "../../contexts/moviesContext";
+import { MoviesContext } from "../../contexts/moviesContext";
 
 const root = {
     display: "flex",
@@ -23,7 +24,83 @@ const chip = { margin: 0.5 };
 
 const MovieDetails = ({ movie }) => {  // Don't miss this!
 const [drawerOpen, setDrawerOpen] = useState(false);
+ const {media} = useContext(MoviesContext)
 
+if(media === "tv"){
+  return (
+    <>
+      <Typography variant="h5" component="h3">
+        Overview
+      </Typography>
+
+      <Typography variant="h6" component="p">
+        {movie.overview}
+      </Typography>
+
+      <Paper 
+        component="ul" 
+        sx={{...root}}
+      >
+        <li>
+          <Chip label="Genres" sx={{...chip}} color="primary" />
+        </li>
+        {movie.genres.map((g) => (
+          <li key={g.name}>
+            <Chip label={g.name} sx={{...chip}} />
+          </li>
+        ))}
+      </Paper>
+      <Paper component="ul" sx={{...root}}>
+        <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
+        <Chip
+          icon={<StarRate />}
+          label={`${movie.vote_average} (${movie.vote_count})`}
+        />
+        <Chip label={`Released: ${movie.release_date}`} />
+        <Paper 
+        component="ul" 
+        sx={{...root}}
+      >
+        <li>
+          <Chip label="Production countries" sx={{...chip}} color="primary" />
+        </li>
+        {movie.production_countries.map((g) => (
+          <li key={g.name}>
+            <Chip label={g.name} sx={{...chip}} />
+          </li>
+	))}
+	<li>
+		<Chip
+		sx={{...chip}}
+		icon={<HubIcon />}
+		lable="Similar movies graph"
+		to={"/movies/${movie.id}/graph"}
+		clickable
+		color="primary"
+		/>
+	</li>
+	  </Paper>
+      </Paper>
+            <Fab
+        color="secondary"
+        variant="extended"
+        onClick={() =>setDrawerOpen(true)}
+        sx={{
+          position: 'fixed',
+          bottom: '1em',
+          right: '1em'
+        }}
+      >
+        <NavigationIcon />
+        Reviews
+      </Fab>
+      <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+        <MovieReviews movie={movie} />
+      </Drawer>
+
+      </>
+  );
+} else{
   return (
     <>
       <Typography variant="h5" component="h3">
@@ -75,7 +152,6 @@ const [drawerOpen, setDrawerOpen] = useState(false);
 		sx={{...chip}}
 		icon={<HubIcon />}
 		lable="Similar movies graph"
-		component={Link}
 		to={"/movies/${movie.id}/graph"}
 		clickable
 		color="primary"
@@ -102,5 +178,6 @@ const [drawerOpen, setDrawerOpen] = useState(false);
 
       </>
   );
+}
 };
 export default MovieDetails ;

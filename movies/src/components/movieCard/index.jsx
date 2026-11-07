@@ -26,7 +26,7 @@ import { MoviesContext } from "../../contexts/moviesContext";
 export default function MovieCard({ movie }) { 
 
 
-  const { favorites, addToFavorites, hated, addToHated } = useContext(MoviesContext);
+  const { favorites, addToFavorites, hated, addToHated, media } = useContext(MoviesContext);
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
@@ -38,6 +38,13 @@ export default function MovieCard({ movie }) {
     e.preventDefault();
     addToFavorites(movie);
   };
+
+   if (hated.find((id) => id === movie.id)) {
+    movie.hated = true;
+  } else {
+    movie.hated = false
+  }
+
 const handleAddToHated = (e) => {
 	e.preventDefault();
 	addToHated(movie);
@@ -97,7 +104,7 @@ const handleAddToHated = (e) => {
         <MoodBadIcon color="primary" fontSize="large" />
     </IconButton>
       
-        <Link to={`/movies/${movie.id}`}>
+        <Link to={`/${media}/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
           </Button>
