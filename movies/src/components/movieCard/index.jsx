@@ -10,7 +10,9 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import MoodBadIcon from "@mui/icons-material/MoodBad";
 import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
-import DeleteIcon from '@mui/icons-material/Delete';
+import AddToFavoritesIcon from "../cardIcons/addToFavorites"
+import AddToHatedIcon from "../cardIcons/addToHated"
+import RemoveFromFavoritesIcon from "../cardIcons/removeFromFavorites"
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png'
@@ -96,13 +98,9 @@ const handleAddToHated = (e) => {
       </CardContent>
       <CardActions disableSpacing>
       
-            <IconButton aria-label="add to favorites" onClick={handleAddToFavorite}>
-        <FavoriteIcon color="primary" fontSize="large" />
-    </IconButton>
-
-            <IconButton aria-label="add to hated" onClick={handleAddToHated}>
-        <MoodBadIcon color="primary" fontSize="large" />
-    </IconButton>
+          <AddToFavoritesIcon movie={movie} />
+          <AddToHatedIcon movie={movie} />
+          <RemoveFromFavoritesIcon movie={movie} />
       
         <Link to={`/${media}/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">

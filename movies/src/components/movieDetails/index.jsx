@@ -11,6 +11,7 @@ import { useState, useContext } from "react";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews"
 import { MoviesContext } from "../../contexts/moviesContext";
+import { Link } from "react-router";
 
 const root = {
     display: "flex",
@@ -71,12 +72,10 @@ if(media === "tv"){
 	))}
 	<li>
 		<Chip
-		sx={{...chip}}
-		icon={<HubIcon />}
-		lable="Similar movies graph"
-		to={"/movies/${movie.id}/graph"}
-		clickable
-		color="primary"
+		label={movie.title ?? movie.name}
+    component={Link}
+    to={`/${media}/${movie.id}/recommendations`}
+    clickable
 		/>
 	</li>
 	  </Paper>
@@ -149,12 +148,10 @@ if(media === "tv"){
 	))}
 	<li>
 		<Chip
-		sx={{...chip}}
-		icon={<HubIcon />}
-		lable="Similar movies graph"
-		to={"/movies/${movie.id}/graph"}
-		clickable
-		color="primary"
+		label={movie.title ?? movie.name}
+    component={Link}
+    to={`/${media}/${movie.id}/recommendations`}
+    clickable
 		/>
 	</li>
 	  </Paper>

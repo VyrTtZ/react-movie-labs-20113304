@@ -1,24 +1,16 @@
 import Pagination from "@mui/material/Pagination";
 import Paper from "@mui/material/Paper";
 
-const Footer = ({ page, totalPages, onChange, sticky = false }) => {
+const Footer = ({ page, totalPages, onChange }) => {
+  
   if (totalPages <= 1) return null;
 
   return (
     <Paper
-      elevation={sticky ? 3 : 0}
       square
       sx={{
         display: "flex",
         justifyContent: "center",
-        py: 2,
-        ...(sticky && {
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          zIndex: 10,
-        }),
       }}
     >
       <Pagination
@@ -26,7 +18,7 @@ const Footer = ({ page, totalPages, onChange, sticky = false }) => {
         page={page}
         onChange={(event, value) => {
           onChange(value);
-          window.scrollTo({ top: 0, behavior: "smooth" });
+          window.scrollTo({ top: 0});
         }}
         color="primary"
         showFirstButton

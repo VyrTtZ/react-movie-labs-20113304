@@ -9,10 +9,10 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import UpcomingPage from "./pages/upcomingMoviesPage";
 import MoviesContextProvider from "./contexts/moviesContext";
-import MovieGraphPage from "./components/movieGraph";
 import NowPlaying from "./pages/nowPlaying";
 import TopRated from "./pages/topRated";
 import Hated from "./pages/hated";
+import MovieRecommendationsPage from "./pages/movieRecommendations";
 
 
 
@@ -33,20 +33,20 @@ const App = () => {
         <MoviesContextProvider>
           
         <SiteHeader />
-	  <Routes>
+	        <Routes>
             <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
             <Route path="/movies/upcoming" element={<UpcomingPage />} />
             <Route path="/reviews/:id" element={<MovieReviewPage />} />
             <Route path="/movie/:id" element={<MoviePage />} />
+            <Route path="/movie/:id/recommendations" element={<MovieRecommendationsPage />} />
             <Route path="/tv/:id" element={<MoviePage />} />
+            <Route path="/tv/:id/recommendations" element={<MovieRecommendationsPage />} />
             <Route path="/" element={<HomePage />} />
-
-	    <Route path="/movie/:id/graph" element={<MovieGraphPage />} />
-	    <Route path="/movies/now_playing" element={<NowPlaying />}/>
-	    <Route path="/movies/top_rated" element={<TopRated />}/>
-	    <Route path="/movies/hated" element={<Hated />}/>
-                  <Route path="*" element={<Navigate to="/" />} />
-	  </Routes>
+	          <Route path="/movies/now_playing" element={<NowPlaying />}/>
+	          <Route path="/movies/top_rated" element={<TopRated />}/>
+	          <Route path="/movies/hated" element={<Hated />}/>
+            <Route path="*" element={<Navigate to="/" />} />
+	        </Routes>
         </MoviesContextProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />

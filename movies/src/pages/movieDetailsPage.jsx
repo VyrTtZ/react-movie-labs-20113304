@@ -13,7 +13,7 @@ import { MoviesContext } from "../contexts/moviesContext";
 const MoviePage = (props) => {
   const { id } = useParams();
   const {media} = useContext(MoviesContext)
-    const { data: movie, error, isPending, isError  } = useQuery({
+  const { data: movie, error, isPending, isError  } = useQuery({
     queryKey: ['movie', {id, media}],
     queryFn: getMovie,
   })

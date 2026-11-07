@@ -1,3 +1,5 @@
+
+//-------------------------------------------------------------------------------------------GET MOVIES HOMEPAGE API CALL
 export const getMovies = ({queryKey}) => {
   const [, pagePart] = queryKey;
   const { media,  page } = pagePart;
@@ -16,6 +18,7 @@ export const getMovies = ({queryKey}) => {
   });
 };
 
+//-------------------------------------------------------------------------------------------GET MOVIES LIST OTHER PAGES API CALL
 export const getMoviesList = ({queryKey}) => {
   const [, pagePart] = queryKey;
   const {type, page, media } = pagePart;
@@ -35,6 +38,7 @@ const temp = media === "tv" && type === "now_playing" ? "airing_today" : type;
   });
 };
 
+//-------------------------------------------------------------------------------------------GET SINGULAR MOVIE API CALL
 export const getMovie = ({ queryKey }) => {
   const [, { id, media }] = queryKey;
   return fetch(
@@ -49,6 +53,7 @@ export const getMovie = ({ queryKey }) => {
   });
 }
 
+//-------------------------------------------------------------------------------------------GET GENRES OF A MEDIA CATEGORY
 
 export const getGenres = ({queryKey}) => {
   const [, {media}] = queryKey;
@@ -64,7 +69,8 @@ export const getGenres = ({queryKey}) => {
   });
 };
 
-  export const getMovieImages = ({ queryKey }) => {
+//-------------------------------------------------------------------------------------------GET IMAGES OF A SPECIFIC MOVIE
+export const getMovieImages = ({ queryKey }) => {
     const [, { id, media }] = queryKey;
     return fetch(
       `https://api.themoviedb.org/3/${media}/${id}/images?api_key=${import.meta.env.VITE_TMDB_KEY}`
@@ -78,7 +84,7 @@ export const getGenres = ({queryKey}) => {
   });
   };
 
-
+//-------------------------------------------------------------------------------------------GET REVIEWS OF A SPECIFIC MOVIE
 export const getMovieReviews = ({ queryKey }) => {
 	const [, idPart] = queryKey;
 	const { id, media } = idPart;
@@ -92,6 +98,7 @@ export const getMovieReviews = ({ queryKey }) => {
     });
 };
 
+//-------------------------------------------------------------------------------------------GET ALL THE UPCOMING MOVIES
 export const getUpcomingMovies = ({ queryKey }) => {
   const [, { media, page }] = queryKey;
   const path = media === "tv" ? "tv/on_the_air" : "movie/upcoming";
@@ -107,27 +114,11 @@ export const getUpcomingMovies = ({ queryKey }) => {
   });
 };
 
+//-------------------------------------------------------------------------------------------GET PAGE OF RECOMMENDATIONS BASED ON A SPECIFIC MOVIE
 export const getRecommendations = ({ queryKey }) => {
-	const [, idPart] = queryKey;
-	const { id } = idPart;
+	const [, { id, media }] = queryKey;
 	return fetch(
 		`https://api.themoviedb.org/3/${media}/${id}/recommendations?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
-  ).then((response) => {
-	  if (!response.ok) {
-		  return response.json().then((error) => {
-			  throw new Error(error.status_message || "Something went wrong");
-		  });
-	  }
-	  return response.json();
-  });
-};
-
-
-export const getCompanies = ({ queryKey }) => {
-	const [, idPart] = queryKey;
-	const { id } = idPart;
-	return fetch(
-		`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
   ).then((response) => {
 	  if (!response.ok) {
 		  return response.json().then((error) => {

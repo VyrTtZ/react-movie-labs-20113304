@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect}  from "react";
+import { useContext }  from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -14,6 +14,7 @@ import { getGenres } from "../../api/tmdb-api";
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../spinner';
 import { MoviesContext } from "../../contexts/moviesContext";
+//-------------------------------------------------------------------------------------------IMPORTS
 
 const formControl = 
   {
@@ -22,13 +23,14 @@ const formControl =
     backgroundColor: "rgb(255, 255, 255)"
   };
 
+//-------------------------------------------------------------------------------------------MAIN FUNCTION OF THE DOC
 export default function FilterMoviesCard(props) {
   const { media } = useContext(MoviesContext);
   const { data, error, isPending, isError } = useQuery({
     queryKey: ['genres', { media }],
     queryFn: getGenres,
   });
-
+//-------------------------------------------------------------------------------------------ISSUE HANDLING
   if (isPending) {
     return <Spinner />;
   }
@@ -55,7 +57,7 @@ export default function FilterMoviesCard(props) {
     handleChange(e, "genre", e.target.value);
   };
 
-
+//-------------------------------------------------------------------------------------------RETURN THE HTML CARD TO FILTER MOVIES
   return (
     <Card 
       sx={{
