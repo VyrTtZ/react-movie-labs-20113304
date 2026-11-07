@@ -18,7 +18,7 @@ export const getMovies = ({queryKey}) => {
 
 export const getMoviesList = ({queryKey}) => {
   const [, pagePart] = queryKey;
-  const { type, page } = pagePart;
+  const { type, page, media } = pagePart;
   return fetch(
     `https://api.themoviedb.org/3/${media}/${type}?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=${page}`
   ).then((response) => {
@@ -36,7 +36,7 @@ export const getMoviesList = ({queryKey}) => {
 export const getMovie = (args) => {
   //console.log(args)
   const [, idPart] = args.queryKey;
-  const { id } = idPart;
+  const { id, media } = idPart;
   return fetch(
     `https://api.themoviedb.org/3/${media}/${id}?api_key=${import.meta.env.VITE_TMDB_KEY}`
   ).then((response) => {
@@ -70,7 +70,7 @@ export const getGenres = ({queryKey}) => {
 
   export const getMovieImages = ({ queryKey }) => {
     const [, idPart] = queryKey;
-    const { id } = idPart;
+    const { id, media } = idPart;
     return fetch(
       `https://api.themoviedb.org/3/${media}/${id}/images?api_key=${import.meta.env.VITE_TMDB_KEY}`
     ).then( (response) => {
@@ -87,7 +87,9 @@ export const getGenres = ({queryKey}) => {
   };
 
 
-export const getMovieReviews = (id) => {
+export const getMovieReviews = ({ queryKey }) => {
+	const [, idPart] = queryKey;
+	const { id, media } = idPart;
   return fetch(
     `https://api.themoviedb.org/3/${media}/${id}/reviews?api_key=${import.meta.env.VITE_TMDB_KEY}`
   )

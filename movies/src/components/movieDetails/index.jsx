@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews"
-
+import { MoviesContext} from "../../contexts/moviesContext";
 
 const root = {
     display: "flex",
@@ -23,7 +23,6 @@ const chip = { margin: 0.5 };
 
 const MovieDetails = ({ movie }) => {  // Don't miss this!
 const [drawerOpen, setDrawerOpen] = useState(false);
-
 
   return (
     <>
