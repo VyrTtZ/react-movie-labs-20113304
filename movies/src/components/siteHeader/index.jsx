@@ -13,6 +13,8 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Switch from "@mui/material/Switch";
 import { MoviesContext } from "../../contexts/moviesContext";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
@@ -47,6 +49,9 @@ const SiteHeader = () => {
     <>
       <AppBar>
         <Toolbar sx={{flexGrow: 1, textAlign: "center"}}>
+          <IconButton aria-label="go back" onClick={() => navigate(-1)}>
+  <ArrowBackIcon color="primary" fontSize="large" />
+</IconButton>
           <Typography sx={{ fontSize: "60px", fontWeight: 600, color: "secondary", mr: "80px" }}>
             TMDB Client
           </Typography>
@@ -105,6 +110,9 @@ const SiteHeader = () => {
 	  checked={media === "tv"}
 	  onChange={(e) => setMedia(e.target.checked ? "tv" : "movie")}
 	  />
+    <IconButton aria-label="go forward" onClick={() => navigate(1)}>
+  <ArrowForwardIcon color="primary" fontSize="large" />
+</IconButton>
         </Toolbar>
       </AppBar>
       <Offset />

@@ -1,4 +1,5 @@
 import { createTheme } from '@mui/material/styles';
+import { transform } from 'lodash';
 
 export const theme = createTheme({
   palette: {
@@ -14,9 +15,30 @@ export const theme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
-        body: { padding: "0 24px" },
+        body: { padding: "0 24px", mt: "200px"},
+    "@keyframes glitch": {
+  "0%, 100%": { transform: "translate(0, 0)" },
+  "20%":      { transform: "translate(-4px, 0)", clipPath: "inset(10% 0 60% 0)" },
+  "22%":      { transform: "translate(0, 0)",    clipPath: "inset(0)" },
+  "60%":      { transform: "translate(4px, 0)",  clipPath: "inset(50% 0 20% 0)" },
+  "62%":      { transform: "translate(0, 0)",    clipPath: "inset(0)" },
+},
       },
     },
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          fontWeight: "bold",
+          animation: "glitch 2s steps(1) infinite",
+        },
+      },
+    },
+
+    MuiCardMedia: {
+  styleOverrides: {
+    root: { animation: "glitch 2s steps(1) infinite" },
+  },
+},
     MuiPaper: {
       styleOverrides: {
         root: {

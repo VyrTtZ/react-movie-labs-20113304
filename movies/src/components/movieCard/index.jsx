@@ -7,7 +7,7 @@ import CardHeader from "@mui/material/CardHeader";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import MoodBadIcon from "@mui/icons-material/MoodBad";
+import Box from "@mui/material/Box"
 import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import AddToFavoritesIcon from "../cardIcons/addToFavorites"
@@ -58,7 +58,7 @@ const handleAddToHated = (e) => {
 
   return (
     <Card>
-                  <CardHeader
+                  <CardHeader component="h4" sx={{ textAlign: "center" }}
         avatar={
           movie.favorite ? (
             <Avatar>
@@ -75,7 +75,10 @@ const handleAddToHated = (e) => {
 
 
       <CardMedia
-	  sx={{ height: "300px" }}
+	  sx={{
+    height: 300,
+    filter: "grayscale(1) sepia(1) hue-rotate(205deg) saturate(5) contrast(7) brightness(0.6)",
+  }}
         image={
           movie.poster_path
             ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
@@ -93,24 +96,39 @@ const handleAddToHated = (e) => {
           <Grid size={{xs: 6}}>
             <Typography>
               <StarRateIcon />
-              {"  "} {movie.vote_average}{" "}
+               {movie.vote_average}
             </Typography>
           </Grid>
         </Grid>
       </CardContent>
       <CardActions disableSpacing>
-      
-          <AddToFavoritesIcon movie={movie} />
-          <AddToHatedIcon movie={movie} />
-          <RemoveFromFavoritesIcon movie={movie} />
-          <WriteReviewIcon movie={movie} />
-          <RemoveFromHatedIcon movie={movie} />
-      
-        <Link to={`/${media}/${movie.id}`}>
-          <Button variant="outlined" size="medium" color="primary">
-            Details
-          </Button>
-        </Link>
+        <Box
+  sx={{
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    width: "100%",
+  }}
+>
+  <AddToFavoritesIcon movie={movie} />
+    {
+    movie.favorite ? <RemoveFromFavoritesIcon movie={movie} /> : null
+  }
+  <AddToHatedIcon movie={movie} />
+  {
+    movie.hated ? <RemoveFromHatedIcon movie={movie} /> : null
+  }
+
+  <WriteReviewIcon movie={movie} />
+
+  
+  <Link to={`/${media}/${movie.id}`} style={{ marginLeft: "auto" }}>
+    <Button variant="outlined" size="medium" color="primary">
+      Details
+    </Button>
+  </Link>
+</Box>
         
       </CardActions>
 
