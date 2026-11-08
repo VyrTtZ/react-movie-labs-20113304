@@ -14,20 +14,23 @@ function MovieListPageTemplate({ movies, title, action, page, totalPages, onPage
   const [sortBy, setSortBy] = useState("none");
 
   const genreId = Number(genreFilter);
-  const { media } = useContext(MoviesContext);
-  let displayedMovies = movies
-  .filter((m) => {
-    console.log("name", m.name ?? "undefined");
-    console.log("title", m.title ?? "undefined")
-    console.log(media === "tv")
+
+  let displayedMovies = movies.
+  
+  filter((m) => {
+    //console.log("name", m.name ?? "undefined");
+    //console.log("title", m.title ?? "undefined")
+    //console.log(media === "tv")
     const title = m.title ?? m.name;
-    console.log(title)
+    //console.log(title)
     return title.toLowerCase().includes(nameFilter.toLowerCase());
-  })
-  .filter((m) => {
+  }).
+  
+  filter((m) => {
     return genreId > 0 ? m.genre_ids.includes(genreId) : true;
-  })
-  .filter((m) => {
+  }).
+  
+  filter((m) => {
     const r = m.vote_average ?? 0;
     return r >= ratingRange[0] && r <= ratingRange[1];
   });
@@ -42,10 +45,10 @@ function MovieListPageTemplate({ movies, title, action, page, totalPages, onPage
   if (sortBy === "date_asc")    sorted.sort((a, b) => (a.release_date ?? a.first_air_date ?? "").localeCompare(b.release_date ?? b.first_air_date ?? ""));
 
   const handleChange = (type, value) => {
-  if (type === "name") setNameFilter(value);
-  else if (type === "genre") setGenreFilter(value);
-  else if (type === "rating") setRatingRange(value);
-  else if (type === "sort") setSortBy(value);
+    if (type === "name") setNameFilter(value);
+    else if (type === "genre") setGenreFilter(value);
+    else if (type === "rating") setRatingRange(value);
+    else if (type === "sort") setSortBy(value);
 };
 
 

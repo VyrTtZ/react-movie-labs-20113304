@@ -129,7 +129,7 @@ export const getRecommendations = ({ queryKey }) => {
 	  return response.json();
   });
 };
-
+//-------------------------------------------------------------------------------------------GET PAGE OF CREDITS BASED ON A SPECIFIC MOVIE
 export const getCredits = ({ queryKey }) => {
   const [, idPart] = queryKey;
   const { media, id } = idPart;
@@ -147,7 +147,7 @@ export const getCredits = ({ queryKey }) => {
     throw error;
   });
 };
-
+//-------------------------------------------------------------------------------------------GET DATA ABOUT A SPECIFIC ACTOR
 export const getActor = ({ queryKey }) => {
   const [, idPart] = queryKey;
   const { id } = idPart;
@@ -166,7 +166,7 @@ export const getActor = ({ queryKey }) => {
   });
 };
 
-
+//-------------------------------------------------------------------------------------------GET PAGE OF MOVIES WITH A SPECIFIC ACTOR IN THEM
 export const getActorsMovies = ({ queryKey }) => {
   const [, { id}] = queryKey;
   return fetch(

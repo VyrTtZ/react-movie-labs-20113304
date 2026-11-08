@@ -9,11 +9,11 @@ import { MoviesContext } from "../contexts/moviesContext";
 
 
 const NowPlaying = () => {
-const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1);
   const {media} = useContext(MoviesContext)
 
   const { data, error, isPending, isError  } = useQuery({
-	queryKey: ['now playing list', { type: "now_playing", page, media}],
+	  queryKey: ['now playing list', { type: "now_playing", page, media}],
     queryFn: getMoviesList,
   })
   
@@ -30,21 +30,19 @@ const [page, setPage] = useState(1);
   // Redundant, but necessary to avoid app crashing.
   const favorites = movies.filter(m => m.favorite)
   localStorage.setItem('favorites', JSON.stringify(favorites))
-  const addToFavorites = (movieId) => true 
 
-     return (
-      <PageTemplate
-        title="Discover Movies"
-        movies={movies}
-        action={(movie) => {
-          return <AddToFavoritesIcon movie={movie} />
-        }}
-        page={page}
+return (
+  <PageTemplate
+    title="Discover Movies"
+    movies={movies}
+    action={(movie) => {
+      return <AddToFavoritesIcon movie={movie} />
+    }}
+  page={page}
 
-      totalPages={Math.min(data.total_pages, 500)}
-      onPageChange={setPage}
-      />
-  );
-
+  totalPages={Math.min(data.total_pages, 500)}
+  onPageChange={setPage}
+  />
+);
 };
 export default NowPlaying;

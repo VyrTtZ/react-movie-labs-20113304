@@ -9,12 +9,12 @@ import Box from "@mui/material/Box"
 
 const TemplateMoviePage = ({ movie, children }) => {
   const {media} = useContext(MoviesContext)
-  const { data, error, isPending, isError } = useQuery({
-    
+  
+  const { data, error, isPending, isError } = useQuery({  
     queryKey: ['images', { id: movie.id, media }],
     queryFn: getMovieImages,
   });
-  console.log("movie: ", movie.id);
+  //console.log("movie: ", movie.id);
   if (isPending) {
     return <Spinner />;
   }
@@ -25,14 +25,14 @@ const TemplateMoviePage = ({ movie, children }) => {
   
   const images = data.posters 
 
-  return (
+return (
   <>
     <Box
       sx={{
         position: "fixed",
         inset: 0,
         zIndex: -1,
-        backgroundImage: `url("https://image.tmdb.org/t/p/w1280${images?.[0]?.file_path}")`,
+        backgroundImage: `url("https://image.tmdb.org/t/p/w1280${images[0].file_path}")`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         filter: "grayscale(1) sepia(1) hue-rotate(205deg) saturate(5) contrast(7) brightness(0.6)",

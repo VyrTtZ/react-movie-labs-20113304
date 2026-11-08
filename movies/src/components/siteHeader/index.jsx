@@ -50,37 +50,31 @@ const SiteHeader = () => {
       <AppBar>
         <Toolbar sx={{flexGrow: 1, textAlign: "center"}}>
           <IconButton aria-label="go back" onClick={() => navigate(-1)}>
-  <ArrowBackIcon color="primary" fontSize="large" />
-</IconButton>
-          <Typography sx={{ fontSize: "60px", fontWeight: 600, color: "secondary", mr: "80px" }}>
-            TMDB Client
-          </Typography>
-          <Typography sx={{ fontSize: "30px", fontWeight: 400, color: "secondary" }}>
-            All you ever wanted to know about Movies!
-          </Typography>
-            {isMobile ? (
-              <>
-                <IconButton
-                  aria-label="menu"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleMenu}
-                  color="inherit"
-                >
-                  <MenuIcon />
-                </IconButton>
+            <ArrowBackIcon color="primary" fontSize="large" />
+              </IconButton>
+                <Typography sx={{ fontSize: "60px", fontWeight: 600, color: "secondary", mr: "80px" }}>
+                  TMDB Client
+                </Typography>
+                <Typography sx={{ fontSize: "30px", fontWeight: 400, color: "secondary" }}>
+                  All you ever wanted to know about Movies!
+                </Typography>
+                {isMobile ? (
+                <>
+                  <IconButton
+                    aria-label="menu"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    onClick={handleMenu}
+                    color="inherit"
+                  >
+                    <MenuIcon />
+                  </IconButton>
                 <Menu
                   id="menu-appbar"
                   anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
+                  anchorOrigin={{ vertical: "top", horizontal: "right"}}
                   keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
+                  transformOrigin={{ vertical: "top", horizontal: "right" }}
                   open={open}
                   onClose={() => setAnchorEl(null)}
                 >
@@ -106,18 +100,18 @@ const SiteHeader = () => {
                 ))}
               </>
             )}
-	  <Switch 
-	  checked={media === "tv"}
-	  onChange={(e) => setMedia(e.target.checked ? "tv" : "movie")}
-	  />
-    <IconButton aria-label="go forward" onClick={() => navigate(1)}>
-  <ArrowForwardIcon color="primary" fontSize="large" />
-</IconButton>
-        </Toolbar>
-      </AppBar>
-      <Offset />
-    </>
-  );
+	        <Switch 
+	          checked={media === "tv"}
+	          onChange={(e) => setMedia(e.target.checked ? "tv" : "movie")}
+	        />
+        <IconButton aria-label="go forward" onClick={() => navigate(1)}>
+      <ArrowForwardIcon color="primary" fontSize="large" />
+    </IconButton>
+  </Toolbar>
+</AppBar>
+<Offset />
+  </>
+);
 };
 
 export default SiteHeader;

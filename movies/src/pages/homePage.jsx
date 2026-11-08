@@ -7,7 +7,7 @@ import { useState, useContext } from "react";
 import { MoviesContext } from "../contexts/moviesContext";
 
 const HomePage = () => {
-const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1);
 	const { media } = useContext(MoviesContext);
 
   const { data, error, isPending, isError  } = useQuery({
@@ -30,18 +30,17 @@ const [page, setPage] = useState(1);
   localStorage.setItem('favorites', JSON.stringify(favorites))
   const addToFavorites = (movieId) => true 
 
-     return (
-      <PageTemplate
-        title="Discover Movies"
-        movies={movies}
-        action={(movie) => {
-          return <AddToFavoritesIcon movie={movie} />
-        }}
-        page={page}
-      totalPages={Math.min(data.total_pages, 500)}
-      onPageChange={setPage}
-      />
-  );
-
+return (
+  <PageTemplate
+    title="Discover Movies"
+    movies={movies}
+    action={(movie) => {
+      return <AddToFavoritesIcon movie={movie} />
+    }}
+    page={page}
+    totalPages={Math.min(data.total_pages, 500)}
+    onPageChange={setPage}
+  />
+);
 };
 export default HomePage;

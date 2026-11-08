@@ -30,18 +30,18 @@ const MoviesContextProvider = (props) => {
     setMyReviews( {...myReviews, [movie.id]: review } )
   };
 
-  return (
-    <MoviesContext.Provider
-      value={{
-        favorites, addToFavorites, removeFromFavorites,
-        hated, addToHated, removeFromHated,
-        addReview, myReviews,
-        media, setMedia,
-      }}
-    >
-      {props.children}
-    </MoviesContext.Provider>
-  );
+return (
+  <MoviesContext.Provider
+    value={{
+      favorites, addToFavorites, removeFromFavorites,
+      hated, addToHated, removeFromHated,
+      addReview, myReviews,
+      media, setMedia,
+    }}
+  >
+    {props.children}
+  </MoviesContext.Provider>
+);
 };
 
 export default MoviesContextProvider;

@@ -16,14 +16,18 @@ const MovieRecommendationsPage = () => {
     queryFn: getMovie,
   });
 
-  if (isPending) return <Spinner />;
-  if (isError) return <h1>{error.message}</h1>;
+  if (isPending) {
+    return <Spinner />;
+  }
+  if (isError) {
+    return <h1>{error.message}</h1>;
+  }
 
-  return (
-    <PageTemplate movie={movie}>
-      <Recommendations movie={movie} media={media} />
-    </PageTemplate>
-  );
+return (
+  <PageTemplate movie={movie}>
+    <Recommendations movie={movie} media={media} />
+  </PageTemplate>
+);
 };
 
 export default MovieRecommendationsPage;

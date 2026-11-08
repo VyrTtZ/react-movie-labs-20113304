@@ -7,7 +7,7 @@ import Spinner from "../components/spinner";
 import { MoviesContext } from "../contexts/moviesContext";
 import { useContext } from "react";
 
-const WriteReviewPage = (props) => {
+const WriteReviewPage = () => {
   const location = useLocation();
   const movieId = location.state.movieId;
   const { media } = useContext(MoviesContext);
@@ -23,11 +23,11 @@ const WriteReviewPage = (props) => {
   if (isError) {
     return <h1>{error.message}</h1>;
   }
-  return (
-    <PageTemplate movie={movie}>
-      <ReviewForm movie={movie} />
-    </PageTemplate>
-  );
+return (
+  <PageTemplate movie={movie}>
+    <ReviewForm movie={movie} />
+  </PageTemplate>
+);
 };
 
 export default WriteReviewPage;

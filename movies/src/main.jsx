@@ -35,28 +35,26 @@ const queryClient = new QueryClient({
 const App = () => {
   return (
   <ThemeProvider theme={theme}>
-<CssBaseLine />    
+<CssBaseLine />     
 <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <MoviesContextProvider>
-          
         <SiteHeader />
 	        <Routes>
             <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
             <Route path="/movies/upcoming" element={<UpcomingPage />} />
             <Route path="/reviews/:id" element={<MovieReviewPage />} />
             <Route path="/movie/:id" element={<MoviePage />} />
-	  <Route path="/movie/:id/credits" element={<MovieCreditsPage />} />
+	          <Route path="/movie/:id/credits" element={<MovieCreditsPage />} />
             <Route path="/movie/:id/recommendations" element={<MovieRecommendationsPage />} />
-	  <Route path="/actor/:id/" element={<ActorPage />}/>
-    <Route path="/tv/:id/credits" element={<MovieCreditsPage />} />
+	          <Route path="/actor/:id/" element={<ActorPage />}/>
+            <Route path="/tv/:id/credits" element={<MovieCreditsPage />} />
             <Route path="/tv/:id" element={<MoviePage />} />
             <Route path="/tv/:id/recommendations" element={<MovieRecommendationsPage />} />
             <Route path="/" element={<HomePage />} />
 	          <Route path="/movies/now_playing" element={<NowPlaying />}/>
 	          <Route path="/movies/top_rated" element={<TopRated />}/>
-                    <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
-
+            <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
 	          <Route path="/movies/hated" element={<Hated />}/>
             <Route path="*" element={<Navigate to="/" />} />
 	        </Routes>

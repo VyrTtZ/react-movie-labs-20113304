@@ -16,7 +16,7 @@ const Footer = ({ page, totalPages, onChange }) => {
       <Pagination
         count={totalPages}
         page={page}
-        onChange={(event, value) => {
+        onChange={(value) => {
           onChange(value);
           window.scrollTo({ top: 0});
         }}

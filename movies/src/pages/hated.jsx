@@ -13,7 +13,6 @@ const HatedMoviesPage = () => {
   const {hated: movieIds } = useContext(MoviesContext);
   const {media} = useContext(MoviesContext)
 
-  // Create an array of queries and run in parallel.
   const hatedMovieQueries = useQueries({
     queries: movieIds.map((movieId) => {
       return {
@@ -23,7 +22,7 @@ const HatedMoviesPage = () => {
     })
   });
   
-  // Check if any of the parallel queries is still loading.
+
   const isPending = hatedMovieQueries.find((m) => m.isPending === true);
 
   if (isPending) {
@@ -35,21 +34,19 @@ const HatedMoviesPage = () => {
     return q.data
   });
 
-  const toDo = () => true;
-
-    return (
-    <PageTemplate
-      title="Hated Movies"
-      movies={movies}
-      action={(movie) => {
-        return (
-          <>
-            <RemoveFromFavorites movie={movie} />
-            <WriteReview movie={movie} />
-          </>
-        );
-      }}
-    />
-    );
+return (
+  <PageTemplate
+    title="Hated Movies"
+    movies={movies}
+    action={(movie) => {
+      return (
+        <>
+          <RemoveFromFavorites movie={movie} />
+          <WriteReview movie={movie} />
+        </>
+      );
+    }}
+  />
+);
 };
 export default HatedMoviesPage;

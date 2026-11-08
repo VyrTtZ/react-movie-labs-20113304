@@ -12,8 +12,12 @@ const Recommendations = ({ movie, media}) => {
     queryFn: getRecommendations,
   });
 
-  if (isPending) return <Spinner />;
-  if (isError) return <h1>{error.message}</h1>;
+  if (isPending) {
+    return <Spinner />;
+  }
+  if (isError) {
+    return <h1>{error.message}</h1>;
+  }
 
   return (
     <>
