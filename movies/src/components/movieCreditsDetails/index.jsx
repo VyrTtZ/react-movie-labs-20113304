@@ -5,8 +5,6 @@ import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
 import Spinner from "../spinner";
 import { getCredits } from "../../api/tmdb-api";
-import { useContext } from "react";
-import { MoviesContext } from "../../contexts/moviesContext";
 
 const Credits = ({ movie, media }) => {
 console.log(media);

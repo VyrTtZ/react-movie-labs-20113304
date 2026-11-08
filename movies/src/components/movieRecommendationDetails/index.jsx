@@ -5,11 +5,8 @@ import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
 import Spinner from "../spinner";
 import { getRecommendations } from "../../api/tmdb-api";
-import { useContext } from "react";
-import { MoviesContext } from "../../contexts/moviesContext";
 
-const Recommendations = ({ movie, media }) => {
-  
+const Recommendations = ({ movie, media}) => {
   const { data, error, isPending, isError } = useQuery({
     queryKey: ["recommendations", { id: movie.id, media }],
     queryFn: getRecommendations,
@@ -29,7 +26,7 @@ const Recommendations = ({ movie, media }) => {
             <Chip
               label={m.title ?? m.name}
               component={Link}
-              to={`/${media}/${m.id}/recommendations`}
+              to={`/${media}/${m.id}`}
               clickable
             />
           </li>

@@ -60,7 +60,7 @@ if(media === "tv"){
 	))}
 	<li>
 		<Chip
-		label={movie.title ?? movie.name}
+		label="Recommendations"
     component={Link}
     to={`/${media}/${movie.id}/recommendations`}
     clickable
@@ -138,7 +138,7 @@ if(media === "tv"){
 	))}
 	<li>
 		<Chip
-		label={movie.title ?? movie.name}
+		label="Recommendations"
     component={Link}
     to={`/${media}/${movie.id}/recommendations`}
     clickable

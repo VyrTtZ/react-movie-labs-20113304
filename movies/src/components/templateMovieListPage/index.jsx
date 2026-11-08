@@ -5,11 +5,14 @@ import Grid from "@mui/material/Grid";
 import { MoviesContext } from "../../contexts/moviesContext";
 import FilterMoviesCard from "../filterMoviesCard";
 import List from "@mui/material/List"
+
 function MovieListPageTemplate({ movies, title, action, page, totalPages, onPageChange }) {
 
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const [ratingRange, setRatingRange] = useState([0, 10]);
+  const [sortBy, setSortBy] = useState("none");
+
   const genreId = Number(genreFilter);
   const { media } = useContext(MoviesContext);
   let displayedMovies = movies
@@ -29,11 +32,23 @@ function MovieListPageTemplate({ movies, title, action, page, totalPages, onPage
     return r >= ratingRange[0] && r <= ratingRange[1];
   });
 
+  const sorted = [...displayedMovies];
+
+  if (sortBy === "rating_desc") sorted.sort((a, b) => b.vote_average - a.vote_average);
+  if (sortBy === "rating_asc")  sorted.sort((a, b) => a.vote_average - b.vote_average);
+  if (sortBy === "title_asc")   sorted.sort((a, b) => (a.title ?? a.name ?? "").localeCompare(b.title ?? b.name ?? ""));
+  if (sortBy === "title_desc")  sorted.sort((a, b) => (b.title ?? b.name ?? "").localeCompare(a.title ?? a.name ?? ""));
+  if (sortBy === "date_desc")   sorted.sort((a, b) => (b.release_date ?? b.first_air_date ?? "").localeCompare(a.release_date ?? a.first_air_date ?? ""));
+  if (sortBy === "date_asc")    sorted.sort((a, b) => (a.release_date ?? a.first_air_date ?? "").localeCompare(b.release_date ?? b.first_air_date ?? ""));
+
   const handleChange = (type, value) => {
   if (type === "name") setNameFilter(value);
   else if (type === "genre") setGenreFilter(value);
   else if (type === "rating") setRatingRange(value);
+  else if (type === "sort") setSortBy(value);
 };
+
+
 
   
 console.log(title)
@@ -50,7 +65,7 @@ return (
     <List container spacing={3} >
 
 
-  <MovieList action={action} movies={displayedMovies} />
+  <MovieList action={action} movies={sorted} />
 </List>
 
     <Footer page={page} totalPages={totalPages} onChange={onPageChange} />

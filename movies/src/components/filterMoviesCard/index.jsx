@@ -1,6 +1,5 @@
 import { useContext }  from "react";
 import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import InputLabel from "@mui/material/InputLabel";
@@ -9,12 +8,12 @@ import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
 import { getGenres } from "../../api/tmdb-api";
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../spinner';
 import { MoviesContext } from "../../contexts/moviesContext";
 import Slider from "@mui/material/Slider";
+import Button from "@mui/material/Button"
 //-------------------------------------------------------------------------------------------IMPORTS
 
 
@@ -53,7 +52,11 @@ const handleGenreChange = (e) => {
 
 //-------------------------------------------------------------------------------------------RETURN THE HTML CARD TO FILTER MOVIES
   return (
-    <Card sx={{mt: "110px"}}> 
+    <Card sx={{
+      mt: "110px",
+      display: "flex",
+      flexDirection: "row"
+      }}> 
       <CardContent>
         <Typography >
           <SearchIcon />
@@ -98,17 +101,13 @@ const handleGenreChange = (e) => {
   sx={{ width: 200, ml: 1 }}
 />
       </CardContent>
-      <CardMedia
-        image={img}
-        title="Filter"
-      />
-      <CardContent>
-        <Typography>
-          <SearchIcon/>
-          Filter the movies.
-          <br />
-        </Typography>
-      </CardContent>
+
+      <Button onClick={() => props.onUserInput("sort", "rating_desc")}>Rating ↓</Button>
+      <Button onClick={() => props.onUserInput("sort", "rating_asc")}>Rating ↑</Button>
+      <Button onClick={() => props.onUserInput("sort", "title_asc")}>A-Z</Button>
+      <Button onClick={() => props.onUserInput("sort", "title_desc")}>Z-A</Button>
+      <Button onClick={() => props.onUserInput("sort", "date_desc")}>Newest</Button>
+      <Button onClick={() => props.onUserInput("sort", "date_asc")}>Oldest</Button>
     </Card>
   );
 }

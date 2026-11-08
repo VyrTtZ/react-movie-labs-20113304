@@ -23,6 +23,7 @@ console.log("actor prop:", actor);
     if (isError) return <h1>{error.message}</h1>;
   return (
     <>
+    <Paper>
       <Typography>
         Biography
       </Typography>
@@ -63,7 +64,7 @@ console.log("actor prop:", actor);
           </li>
         ))}
       </Paper>
-
+</Paper>
     </>
   );
 };

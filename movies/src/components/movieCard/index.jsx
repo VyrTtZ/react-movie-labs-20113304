@@ -1,22 +1,17 @@
-import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import CardHeader from "@mui/material/CardHeader";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Box from "@mui/material/Box"
-import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
-import StarRateIcon from "@mui/icons-material/StarRate";
 import AddToFavoritesIcon from "../cardIcons/addToFavorites"
 import AddToHatedIcon from "../cardIcons/addToHated"
 import RemoveFromFavoritesIcon from "../cardIcons/removeFromFavorites"
 import RemoveFromHatedIcon from "../cardIcons/removeFromHated";
 import WriteReviewIcon from "../cardIcons/writeReview";
 import Grid from "@mui/material/Grid";
-import img from '../../images/film-poster-placeholder.png'
 import { Link } from "react-router";
 import Avatar from '@mui/material/Avatar';
 import { useContext } from "react";
