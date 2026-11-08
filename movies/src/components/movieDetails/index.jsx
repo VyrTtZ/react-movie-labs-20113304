@@ -67,6 +67,15 @@ if(media === "tv"){
     clickable
 		/>
 	</li>
+
+	<li>
+		<Chip
+		label="Cast"
+    component={Link}
+    to={`/${media}/${movie.id}/credits`}
+    clickable
+		/>
+	</li>
 	  </Paper>
       </Paper>
             <Fab
@@ -133,6 +142,15 @@ if(media === "tv"){
 		label={movie.title ?? movie.name}
     component={Link}
     to={`/${media}/${movie.id}/recommendations`}
+    clickable
+		/>
+	</li>
+
+	<li>
+		<Chip
+		label="Cast"
+    component={Link}
+    to={`/${media}/${movie.id}/credits`}
     clickable
 		/>
 	</li>

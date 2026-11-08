@@ -128,3 +128,21 @@ export const getRecommendations = ({ queryKey }) => {
 	  return response.json();
   });
 };
+
+export const getCredits = ({ queryKey }) => {
+  const [, idPart] = queryKey;
+  const { media, id } = idPart;
+  return fetch(
+    `https://api.themoviedb.org/3/${media}/${id}/credits?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US`
+  ).then((response) => {
+    if (!response.ok) {
+      return response.json().then((error) => {
+        throw new Error(error.status_message || "Something went wrong");
+      });
+    }
+    return response.json();
+  })
+  .catch((error) => {
+    throw error;
+  });
+};
