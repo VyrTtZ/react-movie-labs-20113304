@@ -5,8 +5,6 @@ import { MoviesContext } from "../contexts/moviesContext";
 import { useQueries } from "@tanstack/react-query";
 import { getMovie } from "../api/tmdb-api";
 import Spinner from '../components/spinner';
-import RemoveFromFavorites from "../components/cardIcons/removeFromFavorites";
-import WriteReview from "../components/cardIcons/writeReview";
 
 
 const HatedMoviesPage = () => {
@@ -38,14 +36,7 @@ return (
   <PageTemplate
     title="Hated Movies"
     movies={movies}
-    action={(movie) => {
-      return (
-        <>
-          <RemoveFromFavorites movie={movie} />
-          <WriteReview movie={movie} />
-        </>
-      );
-    }}
+    action={ " "}
   />
 );
 };

@@ -1,8 +1,6 @@
 import { useState, useContext } from "react";
 import Footer from "../footer";
 import MovieList from "../movieList";
-import Grid from "@mui/material/Grid";
-import { MoviesContext } from "../../contexts/moviesContext";
 import FilterMoviesCard from "../filterMoviesCard";
 import List from "@mui/material/List"
 

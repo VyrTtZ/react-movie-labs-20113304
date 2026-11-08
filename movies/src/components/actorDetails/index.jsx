@@ -23,13 +23,13 @@ console.log("actor prop:", actor);
     if (isError) return <h1>{error.message}</h1>;
   return (
     <>
-    <Paper>
+    <Paper sx={{mt: "110px"}}>
       <Typography>
         Biography
       </Typography>
 
       <Typography>
-        {actor.biography || "No biography available."}
+        {actor.biography ?? "No biography available."}
       </Typography>
 
       <Paper component="ul">
