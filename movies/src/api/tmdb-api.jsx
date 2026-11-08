@@ -86,8 +86,7 @@ export const getMovieImages = ({ queryKey }) => {
 
 //-------------------------------------------------------------------------------------------GET REVIEWS OF A SPECIFIC MOVIE
 export const getMovieReviews = ({ queryKey }) => {
-	const [, idPart] = queryKey;
-	const { id, media } = idPart;
+	const [, { id, media }] = queryKey;
   return fetch(
     `https://api.themoviedb.org/3/${media}/${id}/reviews?api_key=${import.meta.env.VITE_TMDB_KEY}`
   )

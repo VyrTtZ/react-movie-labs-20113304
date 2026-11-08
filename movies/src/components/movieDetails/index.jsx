@@ -87,7 +87,7 @@ if(media === "tv"){
         Reviews
       </Fab>
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-        <MovieReviews movie={movie} />
+        <MovieReviews movie={movie} media={media} />
       </Drawer>
 
       </>

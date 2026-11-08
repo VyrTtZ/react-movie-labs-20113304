@@ -1,4 +1,4 @@
-import { useEffect, useState }  from "react";
+import { useContext}  from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,17 +8,27 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Link } from "react-router";
 import { getMovieReviews } from "../../api/tmdb-api";
+import { useQuery } from "@tanstack/react-query";
 import { excerpt } from "../../util";
+import { MoviesContext } from "../../contexts/moviesContext";
+import Spinner from '../spinner'
 
 export default function MovieReviews({ movie }) {
-  const [reviews, setReviews] = useState([]);
 
-  useEffect(() => {
-    getMovieReviews(movie.id).then((reviews) => {
-      setReviews(reviews);
+  const {media} = useContext(MoviesContext)
+    
+      const { data, error, isPending, isError } = useQuery({
+      queryKey: ['reviews', { id: movie.id, media }],
+      queryFn: getMovieReviews,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
+      if (isPending) {
+        return <Spinner />;
+      }
+    
+      if (isError) {
+        return <h1>{error.message}</h1>;
+      }
 
   return (
     <TableContainer component={Paper}>
@@ -31,7 +41,7 @@ export default function MovieReviews({ movie }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {reviews.map((r) => (
+          {data.map((r) => (
             <TableRow key={r.id}>
               <TableCell component="th" scope="row">
                 {r.author}
