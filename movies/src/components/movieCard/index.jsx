@@ -73,6 +73,7 @@ const handleAddToHated = (e) => {
 
 
       <CardMedia
+	  sx={{ height: "300px" }}
         image={
           movie.poster_path
             ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`

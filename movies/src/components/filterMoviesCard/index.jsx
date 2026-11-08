@@ -53,7 +53,7 @@ export default function FilterMoviesCard(props) {
 
 //-------------------------------------------------------------------------------------------RETURN THE HTML CARD TO FILTER MOVIES
   return (
-    <Card> 
+    <Card sx={{margin: "60"}}> 
       <CardContent>
         <Typography >
           <SearchIcon />
@@ -88,7 +88,6 @@ export default function FilterMoviesCard(props) {
         </FormControl>
       </CardContent>
       <CardMedia
-        sx={{ height: 300}}
         image={img}
         title="Filter"
       />

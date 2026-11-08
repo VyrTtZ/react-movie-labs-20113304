@@ -28,30 +28,23 @@ function MovieListPageTemplate({ movies, title, action, page, totalPages, onPage
 
 return (
   <>
-    <Grid container>
+    <Grid container spacing={2} sx={{ padding: "20px" }}>
       <Grid size={12}>
         <Header title={title} />
       </Grid>
 
-      <Grid container size={12} spacing={2} sx={{ padding: '20px' }}>
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <FilterCard
-            onUserInput={handleChange}
-            titleFilter={nameFilter}
-            genreFilter={genreFilter}
-          />
-        </Grid>
-
-        <MovieList action={action} movies={displayedMovies} />
+      <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+        <FilterCard
+          onUserInput={handleChange}
+          titleFilter={nameFilter}
+          genreFilter={genreFilter}
+        />
       </Grid>
+
+      <MovieList action={action} movies={displayedMovies} />
     </Grid>
 
-    <Footer
-      page={page}
-      totalPages={totalPages}
-      onChange={onPageChange}
-    />
+    <Footer page={page} totalPages={totalPages} onChange={onPageChange} />
   </>
-);
-}
+);};
 export default MovieListPageTemplate;
