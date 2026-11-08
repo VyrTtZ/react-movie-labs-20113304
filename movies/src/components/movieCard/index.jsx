@@ -13,6 +13,7 @@ import StarRateIcon from "@mui/icons-material/StarRate";
 import AddToFavoritesIcon from "../cardIcons/addToFavorites"
 import AddToHatedIcon from "../cardIcons/addToHated"
 import RemoveFromFavoritesIcon from "../cardIcons/removeFromFavorites"
+import RemoveFromHatedIcon from "../cardIcons/removeFromHated";
 import WriteReviewIcon from "../cardIcons/writeReview";
 import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png'
@@ -20,6 +21,7 @@ import { Link } from "react-router";
 import Avatar from '@mui/material/Avatar';
 import { useContext } from "react";
 import { MoviesContext } from "../../contexts/moviesContext";
+
 
 
 
@@ -66,7 +68,7 @@ const handleAddToHated = (e) => {
         }
         title={
           <Typography>
-            {movie.title}{" "}
+            {movie.title ?? movie.name}{" "}
           </Typography>
         }
       />
@@ -102,10 +104,11 @@ const handleAddToHated = (e) => {
           <AddToHatedIcon movie={movie} />
           <RemoveFromFavoritesIcon movie={movie} />
           <WriteReviewIcon movie={movie} />
+          <RemoveFromHatedIcon movie={movie} />
       
         <Link to={`/${media}/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
-            More Info ...
+            Details
           </Button>
         </Link>
         
