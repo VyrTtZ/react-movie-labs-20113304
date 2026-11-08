@@ -16,17 +16,22 @@ import { MoviesContext } from "../../contexts/moviesContext";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
+// Spacer the same height as the toolbar, so page content isn't hidden behind the fixed AppBar
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = () => {
+  // Element the mobile menu is anchored to; null means the menu is closed
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  // Current media type and setter, shared app-wide via context
   const { media, setMedia} = useContext(MoviesContext);
+  // True on screens smaller than the "md" breakpoint
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   
   const navigate = useNavigate();
 
+  // Navigation links shown as buttons (desktop) or menu items (mobile)
   const menuOptions = [
     { label: "Home", path: "/" },
     { label: "Favorites", path: "/movies/favorites" },
@@ -36,11 +41,13 @@ const SiteHeader = () => {
     { label: "Top Rated", path: "/movies/top_rated" },
   ];
 
+  // Close the menu and go to the selected page
   const handleMenuSelect = (pageURL) => {
     setAnchorEl(null);
     navigate(pageURL);
   };
 
+  // Open the mobile menu, anchored to the clicked icon
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -49,15 +56,18 @@ const SiteHeader = () => {
     <>
       <AppBar>
         <Toolbar sx={{flexGrow: 1, textAlign: "center"}}>
+          {/* Browser-style back button */}
           <IconButton aria-label="go back" onClick={() => navigate(-1)}>
             <ArrowBackIcon color="primary" fontSize="large" />
               </IconButton>
+                {/* Site title and tagline */}
                 <Typography sx={{ fontSize: "60px", fontWeight: 600, color: "secondary", mr: "80px" }}>
                   TMDB Client
                 </Typography>
                 <Typography sx={{ fontSize: "30px", fontWeight: 400, color: "secondary" }}>
                   All you ever wanted to know about Movies!
                 </Typography>
+                {/* Mobile: hamburger icon with dropdown menu. Desktop: row of buttons */}
                 {isMobile ? (
                 <>
                   <IconButton
@@ -100,10 +110,12 @@ const SiteHeader = () => {
                 ))}
               </>
             )}
-	        <Switch 
-	          checked={media === "tv"}
-	          onChange={(e) => setMedia(e.target.checked ? "tv" : "movie")}
-	        />
+          {/* Toggle between movies (off) and TV shows (on) */}
+          <Switch 
+            checked={media === "tv"}
+            onChange={(e) => setMedia(e.target.checked ? "tv" : "movie")}
+          />
+        {/* Browser-style forward button */}
         <IconButton aria-label="go forward" onClick={() => navigate(1)}>
       <ArrowForwardIcon color="primary" fontSize="large" />
     </IconButton>

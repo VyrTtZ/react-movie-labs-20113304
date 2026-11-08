@@ -13,10 +13,14 @@ import { MoviesContext } from "../../contexts/moviesContext";
 import { Link } from "react-router";
 
 
+// Detail panel for a single movie or TV show
 const MovieDetails = ({ movie }) => { 
+// Controls whether the reviews drawer is open
 const [drawerOpen, setDrawerOpen] = useState(false);
+ // Current media type ("movie" or "tv") from context
  const {media} = useContext(MoviesContext)
 
+// TV layout: same as movies but without the revenue chip
 if(media === "tv"){
   return (
     <>
@@ -28,6 +32,7 @@ if(media === "tv"){
         {movie.overview}
       </Typography>
 
+      {/* Genre chips */}
       <Paper 
         component="ul" 
       >
@@ -40,6 +45,7 @@ if(media === "tv"){
           </li>
         ))}
       </Paper>
+      {/* Runtime, rating (vote count) and release date */}
       <Paper component="ul" >
         <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
         <Chip
@@ -47,6 +53,7 @@ if(media === "tv"){
           label={`${movie.vote_average} (${movie.vote_count})`}
         />
         <Chip label={`Released: ${movie.release_date}`} />
+        {/* Production countries, plus links to recommendations and cast pages */}
         <Paper 
         component="ul" 
       >
@@ -77,6 +84,7 @@ if(media === "tv"){
 	</li>
 	  </Paper>
       </Paper>
+            {/* Button that opens the reviews drawer */}
             <Fab
         color="secondary"
         variant="extended"
@@ -85,12 +93,14 @@ if(media === "tv"){
         <NavigationIcon />
         Reviews
       </Fab>
+      {/* Reviews slide down from the top; media is passed so TV reviews are fetched */}
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <MovieReviews movie={movie} media={media} />
       </Drawer>
 
       </>
   );
+// Movie layout: includes a revenue chip
 } else{
   return (
     <>
@@ -102,6 +112,7 @@ if(media === "tv"){
         {movie.overview}
       </Typography>
 
+      {/* Genre chips */}
       <Paper 
         component="ul" 
       >
@@ -114,6 +125,7 @@ if(media === "tv"){
           </li>
         ))}
       </Paper>
+      {/* Runtime, revenue, rating (vote count) and release date */}
       <Paper component="ul" >
         <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
         <Chip
@@ -125,6 +137,7 @@ if(media === "tv"){
           label={`${movie.vote_average} (${movie.vote_count})`}
         />
         <Chip label={`Released: ${movie.release_date}`} />
+        {/* Production countries, plus links to recommendations and cast pages */}
         <Paper 
         component="ul" 
       >
@@ -155,6 +168,7 @@ if(media === "tv"){
 	</li>
 	  </Paper>
       </Paper>
+            {/* Button that opens the reviews drawer */}
             <Fab
         color="secondary"
         variant="extended"
@@ -163,6 +177,7 @@ if(media === "tv"){
         <NavigationIcon />
         Reviews
       </Fab>
+      {/* Reviews slide down from the top */}
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <MovieReviews movie={movie} />
       </Drawer>

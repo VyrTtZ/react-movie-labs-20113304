@@ -23,11 +23,14 @@ import Rating from "@mui/material/Rating"
 
 
 
+// Horizontal card showing one movie/TV show with its actions
 export default function MovieCard({ movie }) { 
 
 
+  // Lists and actions for the current media type, from context
   const { favorites, addToFavorites, hated, addToHated, media } = useContext(MoviesContext);
 
+  // Flag the movie as a favourite if its id is in the favourites list
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
   } else {
@@ -39,6 +42,7 @@ export default function MovieCard({ movie }) {
     addToFavorites(movie);
   };
 
+   // Flag the movie as hated if its id is in the hated list
    if (hated.find((id) => id === movie.id)) {
     movie.hated = true;
   } else {
@@ -46,13 +50,14 @@ export default function MovieCard({ movie }) {
   }
 
   const handleAddToHated = (e) => {
-	  e.preventDefault();
-	  addToHated(movie);
+    e.preventDefault();
+    addToHated(movie);
   };
 
 
 
   return (
+  // Lay the card out as a single row
   <Card sx={{
     display: "flex",
     flexDirection: "row",
@@ -62,6 +67,7 @@ export default function MovieCard({ movie }) {
     p: "0",
   }}
   >
+  {/* Title, with a heart avatar if it's a favourite */}
   <CardHeader
     component="h4"
     sx={{ textAlign: "left", p: "0", ml: "15px", flex: " 220px" }}
@@ -74,12 +80,14 @@ export default function MovieCard({ movie }) {
     }
     title={
       <Typography>
+        {/* Movies use "title", TV shows use "name" */}
         {movie.title ?? movie.name}
       </Typography>
     }
   />
 
 
+  {/* Release date and star rating (out of 10) */}
   <CardContent sx={{ p: "0", mr: "220px"}}>
     <Grid container>
       <Grid size={{ xs: 6 }}>
@@ -100,6 +108,7 @@ export default function MovieCard({ movie }) {
     </Grid>
   </CardContent>
 
+  {/* Action icons and link to the details page */}
   <CardActions disableSpacing>
     <Box
       sx={{
@@ -110,6 +119,7 @@ export default function MovieCard({ movie }) {
         p: "5px",
       }}
     >
+      {/* Remove buttons only appear when the movie is already in that list */}
       <AddToFavoritesIcon movie={movie} />
       {movie.favorite ? <RemoveFromFavoritesIcon movie={movie} /> : null}
 
@@ -128,4 +138,3 @@ export default function MovieCard({ movie }) {
 </Card>
 );
 }
-
