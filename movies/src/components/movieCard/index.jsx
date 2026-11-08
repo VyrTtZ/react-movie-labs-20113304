@@ -13,7 +13,7 @@ import StarRateIcon from "@mui/icons-material/StarRate";
 import AddToFavoritesIcon from "../cardIcons/addToFavorites"
 import AddToHatedIcon from "../cardIcons/addToHated"
 import RemoveFromFavoritesIcon from "../cardIcons/removeFromFavorites"
-import IconButton from "@mui/material/IconButton";
+import WriteReviewIcon from "../cardIcons/writeReview";
 import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png'
 import { Link } from "react-router";
@@ -101,6 +101,7 @@ const handleAddToHated = (e) => {
           <AddToFavoritesIcon movie={movie} />
           <AddToHatedIcon movie={movie} />
           <RemoveFromFavoritesIcon movie={movie} />
+          <WriteReviewIcon movie={movie} />
       
         <Link to={`/${media}/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">

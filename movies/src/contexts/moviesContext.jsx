@@ -27,7 +27,7 @@ const MoviesContextProvider = (props) => {
   const removeFromHated = removeFromList(setHatedLists);
 
   const addReview = (movie, review) => {
-    setMyReviews({ ...myReviews, [`${media}-${movie.id}`]: review });
+    setMyReviews( {...myReviews, [movie.id]: review } )
   };
 
   return (

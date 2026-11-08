@@ -18,6 +18,8 @@ import { theme } from "./styles/theme.jsx";
 import ActorPage from "./pages/actorPage";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseLine from "@mui/material/CssBaseline";
+import AddMovieReviewPage from './pages/addMovieReviewPage'
+
 
 
 const queryClient = new QueryClient({
@@ -52,6 +54,8 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
 	          <Route path="/movies/now_playing" element={<NowPlaying />}/>
 	          <Route path="/movies/top_rated" element={<TopRated />}/>
+                    <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
+
 	          <Route path="/movies/hated" element={<Hated />}/>
             <Route path="*" element={<Navigate to="/" />} />
 	        </Routes>

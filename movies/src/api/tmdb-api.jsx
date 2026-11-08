@@ -97,6 +97,8 @@ export const getMovieReviews = ({ queryKey }) => {
     });
 };
 
+
+
 //-------------------------------------------------------------------------------------------GET ALL THE UPCOMING MOVIES
 export const getUpcomingMovies = ({ queryKey }) => {
   const [, { media, page }] = queryKey;

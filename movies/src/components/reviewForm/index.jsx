@@ -1,3 +1,4 @@
+
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
@@ -9,7 +10,6 @@ import { MoviesContext } from "../../contexts/moviesContext";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useNavigate } from "react-router";
-
 
 
 const ratings = [
@@ -34,8 +34,6 @@ const ratings = [
     label: "Terrible",
   },
 ];
-
-
 
 const styles = {
   root: {
@@ -64,17 +62,14 @@ const styles = {
   },
 };
 
-  const handleSnackClose = (event) => {
-    setOpen(false);
-    navigate("/movies/favorites");
-  };
-
-
 const ReviewForm = ({ movie }) => {
-  const [rating, setRating] = useState(3);
+
     const context = useContext(MoviesContext);
 
-  
+  const [rating, setRating] = useState(3);
+    const [open, setOpen] = useState(false); 
+  const navigate = useNavigate();
+
   const defaultValues = {
     author: "",
     review: "",
@@ -93,14 +88,17 @@ const ReviewForm = ({ movie }) => {
     setRating(event.target.value);
   };
 
-  const [open, setOpen] = useState(false); 
-  const navigate = useNavigate();
-  const onSubmit = (review) => {
+    const onSubmit = (review) => {
     review.movieId = movie.id;
     review.rating = rating;
     // console.log(review);
-    context.addReview(movie, review);
+    context.addReview( movie, review);
     setOpen(true); // NEW
+  };
+
+  const handleSnackClose = (event) => {
+    setOpen(false);
+    navigate("/movies/favorites");
   };
 
 
@@ -110,7 +108,8 @@ const ReviewForm = ({ movie }) => {
       <Typography component="h2" variant="h3">
         Write a review
       </Typography>
-      <Snackbar
+
+            <Snackbar
         sx={styles.snack}
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
         open={open}
@@ -126,6 +125,7 @@ const ReviewForm = ({ movie }) => {
           </Typography>
         </MuiAlert>
       </Snackbar>
+
 
       <form sx={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
         <Controller
