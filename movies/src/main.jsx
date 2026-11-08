@@ -15,7 +15,7 @@ import Hated from "./pages/hated";
 import MovieRecommendationsPage from "./pages/movieRecommendations";
 import MovieCreditsPage from "./pages/movieCredits";
 import { theme } from "./styles/theme.jsx";
-
+import ActorPage from "./pages/actorPage";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseLine from "@mui/material/CssBaseline";
 
@@ -46,6 +46,7 @@ const App = () => {
             <Route path="/movie/:id" element={<MoviePage />} />
 	  <Route path="/movie/:id/credits" element={<MovieCreditsPage />} />
             <Route path="/movie/:id/recommendations" element={<MovieRecommendationsPage />} />
+	  <Route path="/actor/:id/" element={<ActorPage />}/>
             <Route path="/tv/:id" element={<MoviePage />} />
             <Route path="/tv/:id/recommendations" element={<MovieRecommendationsPage />} />
             <Route path="/" element={<HomePage />} />
