@@ -13,15 +13,6 @@ import MovieReviews from "../movieReviews"
 import { MoviesContext } from "../../contexts/moviesContext";
 import { Link } from "react-router";
 
-const root = {
-    display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    listStyle: "none",
-    padding: 1.5,
-    margin: 0,
-};
-const chip = { margin: 0.5 };
 
 const MovieDetails = ({ movie }) => {  // Don't miss this!
 const [drawerOpen, setDrawerOpen] = useState(false);
@@ -30,28 +21,27 @@ const [drawerOpen, setDrawerOpen] = useState(false);
 if(media === "tv"){
   return (
     <>
-      <Typography variant="h5" component="h3">
+      <Typography>
         Overview
       </Typography>
 
-      <Typography variant="h6" component="p">
+      <Typography>
         {movie.overview}
       </Typography>
 
       <Paper 
         component="ul" 
-        sx={{...root}}
       >
         <li>
           <Chip label="Genres" sx={{...chip}} color="primary" />
         </li>
         {movie.genres.map((g) => (
           <li key={g.name}>
-            <Chip label={g.name} sx={{...chip}} />
+            <Chip label={g.name}  />
           </li>
         ))}
       </Paper>
-      <Paper component="ul" sx={{...root}}>
+      <Paper component="ul" >
         <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
         <Chip
           icon={<StarRate />}
@@ -60,14 +50,13 @@ if(media === "tv"){
         <Chip label={`Released: ${movie.release_date}`} />
         <Paper 
         component="ul" 
-        sx={{...root}}
       >
         <li>
-          <Chip label="Production countries" sx={{...chip}} color="primary" />
+          <Chip label="Production countries"  color="primary" />
         </li>
         {movie.production_countries.map((g) => (
           <li key={g.name}>
-            <Chip label={g.name} sx={{...chip}} />
+            <Chip label={g.name} />
           </li>
 	))}
 	<li>
@@ -84,11 +73,6 @@ if(media === "tv"){
         color="secondary"
         variant="extended"
         onClick={() =>setDrawerOpen(true)}
-        sx={{
-          position: 'fixed',
-          bottom: '1em',
-          right: '1em'
-        }}
       >
         <NavigationIcon />
         Reviews
@@ -102,28 +86,27 @@ if(media === "tv"){
 } else{
   return (
     <>
-      <Typography variant="h5" component="h3">
+      <Typography >
         Overview
       </Typography>
 
-      <Typography variant="h6" component="p">
+      <Typography >
         {movie.overview}
       </Typography>
 
       <Paper 
         component="ul" 
-        sx={{...root}}
       >
         <li>
-          <Chip label="Genres" sx={{...chip}} color="primary" />
+          <Chip label="Genres" />
         </li>
         {movie.genres.map((g) => (
           <li key={g.name}>
-            <Chip label={g.name} sx={{...chip}} />
+            <Chip label={g.name}  />
           </li>
         ))}
       </Paper>
-      <Paper component="ul" sx={{...root}}>
+      <Paper component="ul" >
         <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
         <Chip
           icon={<MonetizationIcon />}
@@ -136,14 +119,13 @@ if(media === "tv"){
         <Chip label={`Released: ${movie.release_date}`} />
         <Paper 
         component="ul" 
-        sx={{...root}}
       >
         <li>
-          <Chip label="Production countries" sx={{...chip}} color="primary" />
+          <Chip label="Production countries"  color="primary" />
         </li>
         {movie.production_countries.map((g) => (
           <li key={g.name}>
-            <Chip label={g.name} sx={{...chip}} />
+            <Chip label={g.name} />
           </li>
 	))}
 	<li>
@@ -160,11 +142,6 @@ if(media === "tv"){
         color="secondary"
         variant="extended"
         onClick={() =>setDrawerOpen(true)}
-        sx={{
-          position: 'fixed',
-          bottom: '1em',
-          right: '1em'
-        }}
       >
         <NavigationIcon />
         Reviews

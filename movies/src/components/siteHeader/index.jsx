@@ -14,7 +14,6 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Switch from "@mui/material/Switch";
 import { MoviesContext } from "../../contexts/moviesContext";
 
-
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = () => {
@@ -46,12 +45,12 @@ const SiteHeader = () => {
 
   return (
     <>
-      <AppBar position="fixed" color="secondary">
-        <Toolbar>
-          <Typography variant="h4" sx={{ flexGrow: 1 }}>
+      <AppBar>
+        <Toolbar sx={{flexGrow: 1, textAlign: "center"}}>
+          <Typography sx={{ fontSize: "60px", fontWeight: 600, color: "secondary", mr: "80px" }}>
             TMDB Client
           </Typography>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          <Typography sx={{ fontSize: "30px", fontWeight: 400, color: "secondary" }}>
             All you ever wanted to know about Movies!
           </Typography>
             {isMobile ? (
@@ -95,7 +94,6 @@ const SiteHeader = () => {
                 {menuOptions.map((opt) => (
                   <Button
                     key={opt.label}
-                    color="inherit"
                     onClick={() => handleMenuSelect(opt.path)}
                   >
                     {opt.label}
@@ -106,7 +104,6 @@ const SiteHeader = () => {
 	  <Switch 
 	  checked={media === "tv"}
 	  onChange={(e) => setMedia(e.target.checked ? "tv" : "movie")}
-	  color="default"
 	  />
         </Toolbar>
       </AppBar>

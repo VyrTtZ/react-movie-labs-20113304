@@ -22,7 +22,7 @@ export default function MovieReviews({ movie }) {
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{minWidth: 550}} aria-label="reviews table">
+      <Table >
         <TableHead>
           <TableRow>
             <TableCell >Author</TableCell>

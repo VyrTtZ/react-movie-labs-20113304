@@ -20,7 +20,7 @@ const Recommendations = ({ movie, media }) => {
 
   return (
     <>
-      <Typography variant="h5" component="h3">
+      <Typography >
         Recommendations
       </Typography>
       <Paper component="ul">

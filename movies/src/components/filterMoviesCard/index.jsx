@@ -16,12 +16,6 @@ import Spinner from '../spinner';
 import { MoviesContext } from "../../contexts/moviesContext";
 //-------------------------------------------------------------------------------------------IMPORTS
 
-const formControl = 
-  {
-    margin: 1,
-    minWidth: "90%",
-    backgroundColor: "rgb(255, 255, 255)"
-  };
 
 //-------------------------------------------------------------------------------------------MAIN FUNCTION OF THE DOC
 export default function FilterMoviesCard(props) {
@@ -59,18 +53,14 @@ export default function FilterMoviesCard(props) {
 
 //-------------------------------------------------------------------------------------------RETURN THE HTML CARD TO FILTER MOVIES
   return (
-    <Card 
-      sx={{
-        backgroundColor: "rgb(204, 204, 0)"
-      }} 
-      variant="outlined">
+    <Card> 
       <CardContent>
-        <Typography variant="h5" component="h1">
-          <SearchIcon fontSize="large" />
+        <Typography >
+          <SearchIcon />
           Filter the movies.
         </Typography>
             <TextField
-      sx={{...formControl}}
+      
       id="filled-search"
       label="Search field"
       type="search"
@@ -78,7 +68,7 @@ export default function FilterMoviesCard(props) {
       value={props.titleFilter}
       onChange={handleTextChange}
     />
-<FormControl sx={{...formControl}}>
+<FormControl>
           <InputLabel id="genre-label">Genre</InputLabel>
               <Select
     labelId="genre-label"
@@ -98,13 +88,13 @@ export default function FilterMoviesCard(props) {
         </FormControl>
       </CardContent>
       <CardMedia
-        sx={{ height: 300 }}
+        sx={{ height: 300}}
         image={img}
         title="Filter"
       />
       <CardContent>
-        <Typography variant="h5" component="h1">
-          <SearchIcon fontSize="large" />
+        <Typography>
+          <SearchIcon/>
           Filter the movies.
           <br />
         </Typography>

@@ -20,11 +20,11 @@ const MovieReview =  ({ review }) => {
 
   return (
     <>
-      <Typography variant="h5" component="h3">
+      <Typography>
         Review By: {review.author}
       </Typography>
 
-      <Typography variant="h6" component="p">
+      <Typography>
         {review.content} 
       </Typography>
     </>

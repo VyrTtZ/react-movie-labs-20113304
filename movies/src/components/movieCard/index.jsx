@@ -59,13 +59,13 @@ const handleAddToHated = (e) => {
                   <CardHeader
         avatar={
           movie.favorite ? (
-            <Avatar sx={{ backgroundColor: 'red' }}>
+            <Avatar>
               <FavoriteIcon />
             </Avatar>
           ) : null
         }
         title={
-          <Typography variant="h5" component="p">
+          <Typography>
             {movie.title}{" "}
           </Typography>
         }
@@ -73,7 +73,6 @@ const handleAddToHated = (e) => {
 
 
       <CardMedia
-        sx={{ height: 500 }}
         image={
           movie.poster_path
             ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
@@ -83,14 +82,14 @@ const handleAddToHated = (e) => {
       <CardContent>
         <Grid container>
           <Grid size={{xs: 6}}>
-            <Typography variant="h6" component="p">
-              <CalendarIcon fontSize="small" />
+            <Typography >
+              <CalendarIcon />
               {movie.release_date}
             </Typography>
           </Grid>
           <Grid size={{xs: 6}}>
-            <Typography variant="h6" component="p">
-              <StarRateIcon fontSize="small" />
+            <Typography>
+              <StarRateIcon />
               {"  "} {movie.vote_average}{" "}
             </Typography>
           </Grid>
