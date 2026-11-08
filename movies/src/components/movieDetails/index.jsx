@@ -3,7 +3,6 @@ import Paper from "@mui/material/Paper";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import MonetizationIcon from "@mui/icons-material/MonetizationOn";
 import StarRate from "@mui/icons-material/StarRate";
-import HubIcon from "@mui/icons-material/Hub";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
@@ -14,7 +13,7 @@ import { MoviesContext } from "../../contexts/moviesContext";
 import { Link } from "react-router";
 
 
-const MovieDetails = ({ movie }) => {  // Don't miss this!
+const MovieDetails = ({ movie }) => { 
 const [drawerOpen, setDrawerOpen] = useState(false);
  const {media} = useContext(MoviesContext)
 

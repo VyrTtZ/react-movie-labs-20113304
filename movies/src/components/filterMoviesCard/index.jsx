@@ -14,6 +14,7 @@ import { getGenres } from "../../api/tmdb-api";
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../spinner';
 import { MoviesContext } from "../../contexts/moviesContext";
+import Slider from "@mui/material/Slider";
 //-------------------------------------------------------------------------------------------IMPORTS
 
 
@@ -37,23 +38,22 @@ export default function FilterMoviesCard(props) {
   if (genres[0].name !== "All"){
     genres.unshift({ id: "0", name: "All" });
   }
+const handleChange = (e, type, value) => {
+  e.preventDefault();
+  props.onUserInput(type, value);
+};
 
-  const handleChange = (e, type, value) => {
-    e.preventDefault();
-    props.onUserInput(type, value); 
-  };
+const handleTextChange = (e) => {
+  handleChange(e, "name", e.target.value);
+};
 
-  const handleTextChange = (e, props) => {
-    handleChange(e, "name", e.target.value);
-  };
-
-  const handleGenreChange = (e) => {
-    handleChange(e, "genre", e.target.value);
-  };
+const handleGenreChange = (e) => {
+  handleChange(e, "genre", e.target.value);
+};
 
 //-------------------------------------------------------------------------------------------RETURN THE HTML CARD TO FILTER MOVIES
   return (
-    <Card sx={{margin: "60"}}> 
+    <Card sx={{mt: "110px"}}> 
       <CardContent>
         <Typography >
           <SearchIcon />
@@ -86,6 +86,17 @@ export default function FilterMoviesCard(props) {
             })}
           </Select>
         </FormControl>
+
+        <Typography>Rating</Typography>
+<Slider
+  value={props.ratingRange}
+  onChange={(e, value) => props.onUserInput("rating", value)}
+  min={0}
+  max={10}
+  step={0.5}
+  valueLabelDisplay="auto"
+  sx={{ width: 200, ml: 1 }}
+/>
       </CardContent>
       <CardMedia
         image={img}
