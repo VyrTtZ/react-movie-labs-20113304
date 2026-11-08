@@ -4,6 +4,7 @@ import MovieList from "../movieList";
 import Grid from "@mui/material/Grid";
 import { MoviesContext } from "../../contexts/moviesContext";
 import FilterMoviesCard from "../filterMoviesCard";
+import List from "@mui/material/List"
 function MovieListPageTemplate({ movies, title, action, page, totalPages, onPageChange }) {
 
   const [nameFilter, setNameFilter] = useState("");
@@ -46,11 +47,11 @@ return (
 />
   
 
-    <Grid container spacing={3} >
+    <List container spacing={3} >
 
 
   <MovieList action={action} movies={displayedMovies} />
-</Grid>
+</List>
 
     <Footer page={page} totalPages={totalPages} onChange={onPageChange} />
   </>

@@ -21,6 +21,7 @@ import { Link } from "react-router";
 import Avatar from '@mui/material/Avatar';
 import { useContext } from "react";
 import { MoviesContext } from "../../contexts/moviesContext";
+import Rating from "@mui/material/Rating"
 
 
 
@@ -49,90 +50,87 @@ export default function MovieCard({ movie }) {
     movie.hated = false
   }
 
-const handleAddToHated = (e) => {
-	e.preventDefault();
-	addToHated(movie);
-};
+  const handleAddToHated = (e) => {
+	  e.preventDefault();
+	  addToHated(movie);
+  };
 
 
 
   return (
-    <Card>
-                  <CardHeader component="h4" sx={{ textAlign: "center" }}
-        avatar={
-          movie.favorite ? (
-            <Avatar>
-              <FavoriteIcon />
-            </Avatar>
-          ) : null
-        }
-        title={
-          <Typography>
-            {movie.title ?? movie.name}{" "}
-          </Typography>
-        }
-      />
-
-
-      <CardMedia
-	  sx={{
-    height: 300,
-    filter: "grayscale(1) sepia(1) hue-rotate(205deg) saturate(5) contrast(7) brightness(0.6)",
-  }}
-        image={
-          movie.poster_path
-            ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-            : img
-        }
-      />
-      <CardContent>
-        <Grid container>
-          <Grid size={{xs: 6}}>
-            <Typography >
-              <CalendarIcon />
-              {movie.release_date}
-            </Typography>
-          </Grid>
-          <Grid size={{xs: 6}}>
-            <Typography>
-              <StarRateIcon />
-               {movie.vote_average}
-            </Typography>
-          </Grid>
-        </Grid>
-      </CardContent>
-      <CardActions disableSpacing>
-        <Box
-  sx={{
+  <Card sx={{
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "flex-start",
+    gap: 2,
     width: "100%",
+    p: "0",
   }}
->
-  <AddToFavoritesIcon movie={movie} />
-    {
-    movie.favorite ? <RemoveFromFavoritesIcon movie={movie} /> : null
-  }
-  <AddToHatedIcon movie={movie} />
-  {
-    movie.hated ? <RemoveFromHatedIcon movie={movie} /> : null
-  }
+  >
+  <CardHeader
+    component="h4"
+    sx={{ textAlign: "left", p: "0", ml: "15px", flex: " 220px" }}
+    avatar={
+      movie.favorite ? (
+        <Avatar>
+          <FavoriteIcon />
+        </Avatar>
+      ) : null
+    }
+    title={
+      <Typography>
+        {movie.title ?? movie.name}
+      </Typography>
+    }
+  />
 
-  <WriteReviewIcon movie={movie} />
 
-  
-  <Link to={`/${media}/${movie.id}`} style={{ marginLeft: "auto" }}>
-    <Button variant="outlined" size="medium" color="primary">
-      Details
-    </Button>
-  </Link>
-</Box>
-        
-      </CardActions>
+  <CardContent sx={{ p: "0", mr: "220px"}}>
+    <Grid container>
+      <Grid size={{ xs: 6 }}>
+        <Typography>
+          {movie.release_date}
+        </Typography>
+      </Grid>
+      <Grid size={{ xs: 6 }}>
+        <Rating
+          value={movie.vote_average}
+          max={10}
+          precision={0.1}
+          readOnly
+          size="small"
+          sx={{ color: "secondary.main" }}
+        />
+      </Grid>
+    </Grid>
+  </CardContent>
 
-    </Card>
-  );
+  <CardActions disableSpacing>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        p: "5px",
+      }}
+    >
+      <AddToFavoritesIcon movie={movie} />
+      {movie.favorite ? <RemoveFromFavoritesIcon movie={movie} /> : null}
+
+      <AddToHatedIcon movie={movie} />
+      {movie.hated ? <RemoveFromHatedIcon movie={movie} /> : null}
+
+      <WriteReviewIcon movie={movie} />
+
+      <Link to={`/${media}/${movie.id}`}>
+        <Button variant="outlined" size="medium" color="primary">
+          Details
+        </Button>
+      </Link>
+    </Box>
+  </CardActions>
+</Card>
+);
 }
 

@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { MoviesContext } from "../../contexts/moviesContext";
 import Box from "@mui/material/Box"
 
+
 const TemplateMoviePage = ({ movie, children }) => {
   const {media} = useContext(MoviesContext)
   const { data, error, isPending, isError } = useQuery({
@@ -30,7 +31,8 @@ const TemplateMoviePage = ({ movie, children }) => {
       sx={{
         position: "fixed",
         inset: 0,
-        backgroundImage: `url("https://image.tmdb.org/t/p/w1280${images[0].file_path}")`,
+        zIndex: -1,
+        backgroundImage: `url("https://image.tmdb.org/t/p/w1280${images?.[0]?.file_path}")`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         filter: "grayscale(1) sepia(1) hue-rotate(205deg) saturate(5) contrast(7) brightness(0.6)",
