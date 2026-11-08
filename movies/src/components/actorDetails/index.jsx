@@ -7,8 +7,20 @@ import StarRate from "@mui/icons-material/StarRate";
 import { Link } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../spinner";
+import { getActorsMovies } from "../../api/tmdb-api";
+import { useContext } from "react";
+import { MoviesContext } from "../../contexts/moviesContext";
 
 const ActorDetails = ({ actor }) => {
+console.log("actor prop:", actor);
+  const { media } = useContext(MoviesContext)
+  const{ data, error, isPending, isError} = useQuery({
+    queryKey: ["filmography", { id: actor.id }],
+    queryFn: getActorsMovies,
+  });
+
+    if (isPending) return <Spinner />;
+    if (isError) return <h1>{error.message}</h1>;
   return (
     <>
       <Typography>
@@ -37,6 +49,19 @@ const ActorDetails = ({ actor }) => {
         <li>
           <Chip icon={<StarRate />} label={`Popularity: ${actor.popularity}`} />
         </li>
+      </Paper>
+
+      <Paper component="ul">
+        {data.cast.map((m) => (
+          <li key={m.id}>
+            <Chip
+              label={m.title ?? m.name}
+              component={Link}
+              to={`/${media}/${m.id}`}
+              clickable
+            />
+          </li>
+        ))}
       </Paper>
 
     </>

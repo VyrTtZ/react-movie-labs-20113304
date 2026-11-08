@@ -33,7 +33,7 @@ if(media === "tv"){
         component="ul" 
       >
         <li>
-          <Chip label="Genres" sx={{...chip}} color="primary" />
+          <Chip label="Genres" color="primary" />
         </li>
         {movie.genres.map((g) => (
           <li key={g.name}>

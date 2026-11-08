@@ -12,7 +12,6 @@ function MovieListPageTemplate({ movies, title, action, page, totalPages, onPage
   const [genreFilter, setGenreFilter] = useState("0");
   const genreId = Number(genreFilter);
   const { media } = useContext(MoviesContext);
-title = movies.title ?? movies.name;
   let displayedMovies = movies
     .filter((m) => {
       console.log("name", m.name ?? "undefined");
